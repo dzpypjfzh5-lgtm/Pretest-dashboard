@@ -7,142 +7,124 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:      #F7F5F0;
-    --surface: #FFFFFF;
-    --border:  #E2DDD6;
-    --text:    #1A1714;
-    --muted:   #7A746C;
-    --accent:  #2B4D3F;
-    --r1-bg: #4A0A0A; --r1-fg: #FFD5D5;
-    --r2-bg: #C0392B; --r2-fg: #FFE8E8;
-    --r3-bg: #8A6800; --r3-fg: #FFF6D0;
-    --r4-bg: #27AE60; --r4-fg: #E8F8EF;
-    --r5-bg: #0D4F47; --r5-fg: #C8EDE9;
+    --bg:#F7F5F0;--surface:#FFFFFF;--border:#E2DDD6;--text:#1A1714;--muted:#7A746C;--accent:#2B4D3F;
+    --r1-bg:#4A0A0A;--r1-fg:#FFD5D5;--r2-bg:#C0392B;--r2-fg:#FFE8E8;
+    --r3-bg:#8A6800;--r3-fg:#FFF6D0;--r4-bg:#27AE60;--r4-fg:#E8F8EF;
+    --r5-bg:#0D4F47;--r5-fg:#C8EDE9;
   }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;}
 
-  header {
-    background: var(--accent); color: #fff;
-    padding: 18px 32px; display: flex; align-items: center; justify-content: space-between;
-    position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.15);
-  }
-  header h1 { font-family: 'DM Serif Display', serif; font-size: 1.35rem; font-weight: 400; }
-  header .sub { font-size: .75rem; opacity: .7; margin-top: 2px; font-family: 'DM Mono', monospace; }
-  .header-actions { display: flex; gap: 10px; }
+  header{background:var(--accent);color:#fff;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.15);}
+  header h1{font-family:'DM Serif Display',serif;font-size:1.35rem;font-weight:400;}
+  header .sub{font-size:.75rem;opacity:.7;margin-top:2px;font-family:'DM Mono',monospace;}
+  .header-actions{display:flex;gap:10px;}
 
-  nav {
-    background: var(--surface); border-bottom: 2px solid var(--border);
-    display: flex; padding: 0 32px; overflow-x: auto;
-  }
-  nav button {
-    background: none; border: none; cursor: pointer;
-    padding: 14px 20px; font-family: 'DM Sans', sans-serif;
-    font-size: .85rem; font-weight: 500; color: var(--muted);
-    border-bottom: 3px solid transparent; margin-bottom: -2px;
-    white-space: nowrap; transition: color .15s, border-color .15s;
-  }
-  nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
-  nav button:hover:not(.active) { color: var(--text); }
+  nav{background:var(--surface);border-bottom:2px solid var(--border);display:flex;padding:0 32px;overflow-x:auto;}
+  nav button{background:none;border:none;cursor:pointer;padding:14px 20px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color .15s,border-color .15s;}
+  nav button.active{color:var(--accent);border-bottom-color:var(--accent);}
+  nav button:hover:not(.active){color:var(--text);}
 
-  main { padding: 28px 32px; max-width: 1700px; }
-  .page { display: none; }
-  .page.active { display: block; }
+  main{padding:28px 32px;max-width:1700px;}
+  .page{display:none;}.page.active{display:block;}
 
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 20px; }
-  .card-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-  .badge { font-family: 'DM Mono', monospace; font-size: .65rem; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 20px; }
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:20px;}
+  .card-title{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .badge{font-family:'DM Mono',monospace;font-size:.65rem;background:var(--accent);color:#fff;padding:2px 8px;border-radius:20px;}
 
-  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 6px; border: none; font-family: 'DM Sans', sans-serif; font-size: .82rem; font-weight: 500; cursor: pointer; transition: all .15s; }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { background: #1e3a2f; }
-  .btn-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
-  .btn-secondary:hover { background: var(--border); }
-  .btn-danger { background: #c0392b; color: #fff; }
-  .btn-danger:hover { background: #922b21; }
-  .btn-sm { padding: 5px 10px; font-size: .75rem; }
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:6px;border:none;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .15s;}
+  .btn-primary{background:var(--accent);color:#fff;}.btn-primary:hover{background:#1e3a2f;}
+  .btn-secondary{background:var(--bg);color:var(--text);border:1px solid var(--border);}.btn-secondary:hover{background:var(--border);}
+  .btn-danger{background:#c0392b;color:#fff;}.btn-danger:hover{background:#922b21;}
+  .btn-sm{padding:5px 10px;font-size:.75rem;}
 
-  label { display: block; font-size: .8rem; font-weight: 500; color: var(--muted); margin-bottom: 5px; }
-  input, select, textarea { width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: .85rem; background: var(--bg); color: var(--text); transition: border-color .15s; }
-  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(43,77,63,.1); }
-  .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 14px; }
+  label{display:block;font-size:.8rem;font-weight:500;color:var(--muted);margin-bottom:5px;}
+  input,select,textarea{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.85rem;background:var(--bg);color:var(--text);transition:border-color .15s;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(43,77,63,.1);}
+  .form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:14px;}
 
-  .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
-  table { width: 100%; border-collapse: collapse; font-size: .8rem; }
-  thead th { background: var(--accent); color: #fff; padding: 10px 12px; text-align: left; font-weight: 500; font-size: .73rem; letter-spacing: .04em; white-space: nowrap; }
-  tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: #F0EDE8; }
-  td { padding: 8px 12px; vertical-align: middle; }
-  td.mono { font-family: 'DM Mono', monospace; font-size: .73rem; }
+  .table-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--border);}
+  table{width:100%;border-collapse:collapse;font-size:.8rem;}
+  thead th{background:var(--accent);color:#fff;padding:10px 12px;text-align:left;font-weight:500;font-size:.73rem;letter-spacing:.04em;white-space:nowrap;}
+  tbody tr{border-bottom:1px solid var(--border);transition:background .1s;}
+  tbody tr:last-child{border-bottom:none;}
+  tbody tr:hover{background:#F0EDE8;}
+  td{padding:8px 12px;vertical-align:middle;}
+  td.mono{font-family:'DM Mono',monospace;font-size:.73rem;}
 
-  .chip { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: .68rem; font-weight: 600; white-space: nowrap; }
-  .chip-r1 { background: var(--r1-bg); color: var(--r1-fg); }
-  .chip-r2 { background: var(--r2-bg); color: var(--r2-fg); }
-  .chip-r3 { background: var(--r3-bg); color: var(--r3-fg); }
-  .chip-r4 { background: var(--r4-bg); color: var(--r4-fg); }
-  .chip-r5 { background: var(--r5-bg); color: var(--r5-fg); }
-  .chip-grey { background: #EEEAE4; color: var(--muted); }
+  .chip{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.68rem;font-weight:600;white-space:nowrap;}
+  .chip-r1{background:var(--r1-bg);color:var(--r1-fg);}
+  .chip-r2{background:var(--r2-bg);color:var(--r2-fg);}
+  .chip-r3{background:var(--r3-bg);color:var(--r3-fg);}
+  .chip-r4{background:var(--r4-bg);color:var(--r4-fg);}
+  .chip-r5{background:var(--r5-bg);color:var(--r5-fg);}
+  .chip-grey{background:#EEEAE4;color:var(--muted);}
 
-  .pri-high { color: #C0392B; font-weight: 600; }
-  .pri-some { color: #8A6800; font-weight: 600; }
-  .pri-ok   { color: #27AE60; font-weight: 600; }
-  .pri-inc  { color: var(--muted); font-style: italic; }
+  .pri-high{color:#C0392B;font-weight:600;}.pri-some{color:#8A6800;font-weight:600;}
+  .pri-ok{color:#27AE60;font-weight:600;}.pri-inc{color:var(--muted);font-style:italic;}
 
-  .sd-bar-wrap { display: flex; align-items: center; gap: 6px; min-width: 110px; }
-  .sd-bar-track { flex: 1; height: 6px; background: var(--border); border-radius: 3px; position: relative; }
-  .sd-bar-fill  { position: absolute; top: 0; height: 6px; border-radius: 3px; }
-  .sd-val { font-family: 'DM Mono', monospace; font-size: .68rem; color: var(--muted); min-width: 42px; text-align: right; }
+  .sd-bar-wrap{display:flex;align-items:center;gap:6px;min-width:110px;}
+  .sd-bar-track{flex:1;height:6px;background:var(--border);border-radius:3px;position:relative;}
+  .sd-bar-fill{position:absolute;top:0;height:6px;border-radius:3px;}
+  .sd-val{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);min-width:42px;text-align:right;}
 
-  .upload-zone { border: 2px dashed var(--border); border-radius: 10px; padding: 28px 20px; text-align: center; cursor: pointer; transition: all .2s; background: var(--bg); }
-  .upload-zone:hover, .upload-zone.drag { border-color: var(--accent); background: #EEF3F0; }
-  .upload-zone .icon { font-size: 1.8rem; margin-bottom: 6px; }
-  .upload-zone p { color: var(--muted); font-size: .82rem; }
-  .upload-zone strong { color: var(--accent); }
+  .upload-zone{border:2px dashed var(--border);border-radius:10px;padding:28px 20px;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg);}
+  .upload-zone:hover,.upload-zone.drag{border-color:var(--accent);background:#EEF3F0;}
+  .upload-zone .icon{font-size:1.8rem;margin-bottom:6px;}
+  .upload-zone p{color:var(--muted);font-size:.82rem;}
+  .upload-zone strong{color:var(--accent);}
 
-  .map-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
-  .map-label { font-size: .8rem; font-weight: 500; min-width: 130px; padding-top: 10px; }
+  .map-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
+  .map-label{font-size:.8rem;font-weight:500;min-width:130px;padding-top:10px;}
 
-  .stats-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
-  .stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 20px; min-width: 110px; flex: 1; }
-  .stat-box .val { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--accent); }
-  .stat-box .lbl { font-size: .72rem; color: var(--muted); margin-top: 2px; }
+  .stats-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px;}
+  .stat-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 20px;min-width:110px;flex:1;}
+  .stat-box .val{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--accent);}
+  .stat-box .lbl{font-size:.72rem;color:var(--muted);margin-top:2px;}
 
-  .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 200; align-items: center; justify-content: center; }
-  .modal-bg.open { display: flex; }
-  .modal { background: var(--surface); border-radius: 12px; padding: 28px; max-width: 580px; width: 90%; max-height: 88vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.2); }
-  .modal h2 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin-bottom: 16px; color: var(--accent); }
-  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;align-items:center;justify-content:center;}
+  .modal-bg.open{display:flex;}
+  .modal{background:var(--surface);border-radius:12px;padding:28px;max-width:580px;width:90%;max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2);}
+  .modal h2{font-family:'DM Serif Display',serif;font-size:1.2rem;margin-bottom:16px;color:var(--accent);}
+  .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;}
 
-  .legend { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
-  .legend-label { font-size: .72rem; color: var(--muted); margin-right: 2px; }
+  .legend{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;align-items:center;}
+  .legend-label{font-size:.72rem;color:var(--muted);margin-right:2px;}
 
-  .filter-bar { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 16px; }
-  .filter-bar select, .filter-bar input { width: auto; min-width: 150px; }
+  .filter-bar{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin-bottom:16px;}
+  .filter-bar select{width:auto;min-width:150px;}
 
-  .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
-  .empty .icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .empty{text-align:center;padding:60px 20px;color:var(--muted);}
+  .empty .icon{font-size:2.5rem;margin-bottom:12px;}
 
-  #toast { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: #fff; padding: 12px 20px; border-radius: 8px; font-size: .85rem; z-index: 300; transform: translateY(80px); opacity: 0; transition: all .3s; pointer-events: none; }
-  #toast.show { transform: translateY(0); opacity: 1; }
+  #toast{position:fixed;bottom:24px;right:24px;background:var(--accent);color:#fff;padding:12px 20px;border-radius:8px;font-size:.85rem;z-index:300;transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;}
+  #toast.show{transform:translateY(0);opacity:1;}
 
-  .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
-  .profile-test-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
-  .profile-test-card h4 { font-size: .9rem; font-weight: 600; margin-bottom: 10px; }
-  .score-big { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--accent); line-height: 1; }
-  .score-sub { font-size: .72rem; color: var(--muted); margin-bottom: 10px; }
+  .profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+  .profile-test-card{border:1px solid var(--border);border-radius:10px;padding:16px;}
+  .profile-test-card h4{font-size:.9rem;font-weight:600;margin-bottom:10px;}
+  .score-big{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--accent);line-height:1;}
+  .score-sub{font-size:.72rem;color:var(--muted);margin-bottom:10px;}
 
-  .test-config-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; padding: 10px 12px; background: var(--bg); border-radius: 8px; border: 1px solid var(--border); }
-  .test-config-row input { flex: 1; }
-  .max-input { max-width: 80px; }
+  .setup-card{background:var(--surface);border:2px solid var(--accent);border-radius:10px;padding:24px;margin-bottom:20px;}
+  .setup-summary{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg);border-radius:8px;border:1px solid var(--border);margin-bottom:20px;font-size:.85rem;}
+  .setup-summary .sum-text{flex:1;color:var(--muted);}
+  .setup-summary .sum-text strong{color:var(--text);}
+  .setup-section{margin-bottom:22px;}
+  .setup-section h3{font-size:.78rem;font-weight:600;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px;}
+  .toggle-row{display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;width:fit-content;margin-bottom:8px;}
+  .toggle-row button{background:var(--bg);border:none;padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;color:var(--muted);transition:all .15s;}
+  .toggle-row button.active{background:var(--accent);color:#fff;}
+  .test-config-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;padding:10px 12px;background:var(--bg);border-radius:8px;border:1px solid var(--border);}
+  .test-config-row input{flex:1;min-width:0;}
 
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar{width:6px;height:6px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
 
-  @media (max-width: 600px) {
-    header, nav, main { padding-left: 16px; padding-right: 16px; }
-    .form-row { grid-template-columns: 1fr; }
+  @media(max-width:600px){
+    header,nav,main{padding-left:16px;padding-right:16px;}
+    .form-row{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -170,6 +152,34 @@
 
 <!-- DATA PAGE -->
 <div class="page active" id="page-data">
+
+  <div id="setup-card" class="setup-card" style="display:none">
+    <div style="font-family:'DM Serif Display',serif;font-size:1.25rem;color:var(--accent);margin-bottom:4px">Dashboard Setup</div>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:22px">Configure your tests and grouping before loading data. You can revisit this any time in Settings.</p>
+
+    <div class="setup-section">
+      <h3>Tests</h3>
+      <div id="setup-test-list"></div>
+      <button class="btn btn-secondary btn-sm" onclick="setupAddTest()" style="margin-top:6px">+ Add test</button>
+    </div>
+
+    <div class="setup-section">
+      <h3>Do your students belong to distinct classes or groups?</h3>
+      <div class="toggle-row">
+        <button id="grp-yes" onclick="setGrouping(true)">Yes — use class groupings</button>
+        <button id="grp-no"  onclick="setGrouping(false)">No — cohort only</button>
+      </div>
+      <p id="grp-hint" style="font-size:.78rem;color:var(--muted);margin-top:2px"></p>
+    </div>
+
+    <button class="btn btn-primary" onclick="confirmSetup()">Confirm Setup →</button>
+  </div>
+
+  <div id="setup-summary" class="setup-summary" style="display:none">
+    <span class="sum-text" id="setup-summary-text"></span>
+    <button class="btn btn-secondary btn-sm" onclick="editSetup()">Edit Setup</button>
+  </div>
+
   <div class="card">
     <div class="card-title">Master Student Roll <span class="badge">Step 1 — Required</span></div>
     <p style="color:var(--muted);font-size:.85rem;margin-bottom:14px;">
@@ -180,7 +190,7 @@
          onclick="triggerRollUpload()" ondragover="dragOver(event)" ondrop="dropRollFile(event)">
       <div class="icon">📋</div>
       <p><strong>Student Roll</strong><br>Drop CSV or click to upload<br>
-      <span style="font-size:.7rem">Needs: first name, last name, email, class</span></p>
+      <span style="font-size:.7rem" id="roll-zone-hint">Needs: first name, last name, email, class</span></p>
       <div id="status-roll"></div>
     </div>
     <input type="file" id="roll-file-input" accept=".csv" style="display:none" onchange="handleRollFileInput(event)">
@@ -188,9 +198,7 @@
 
   <div class="card">
     <div class="card-title">Test Scores <span class="badge">Step 2</span></div>
-    <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">
-      Upload one CSV per test. Configure test names and max scores in Settings first if needed.
-    </p>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">Upload one CSV per test. Students already on the roll will have their names preserved.</p>
     <div id="test-upload-zones" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;"></div>
     <input type="file" id="file-input" accept=".csv" style="display:none" onchange="handleFileInput(event)">
   </div>
@@ -200,7 +208,7 @@
     <div class="form-row">
       <div><label>Email</label><input type="email" id="me-email" placeholder="student@school.edu"></div>
       <div><label>Full Name</label><input type="text" id="me-name" placeholder="First Last"></div>
-      <div><label>Class</label><input type="text" id="me-class" placeholder="e.g. 7E"></div>
+      <div id="me-class-wrap"><label>Class</label><input type="text" id="me-class" placeholder="e.g. 7E"></div>
       <div><label>Test</label><select id="me-test"></select></div>
       <div><label>Score</label><input type="number" id="me-score" placeholder="0" min="0"></div>
     </div>
@@ -219,10 +227,12 @@
 <!-- CLASS VIEW -->
 <div class="page" id="page-class">
   <div class="filter-bar">
-    <div><label style="margin-bottom:3px">Class</label>
+    <div id="class-filter-wrap">
+      <label style="margin-bottom:3px">Class</label>
       <select id="class-filter" onchange="renderClassView()"><option value="__all__">All Classes</option></select>
     </div>
-    <div><label style="margin-bottom:3px">Sort by</label>
+    <div>
+      <label style="margin-bottom:3px">Sort by</label>
       <select id="class-sort" onchange="renderClassView()">
         <option value="name">Name A→Z</option>
         <option value="sd_asc">SD Rank (most in need first)</option>
@@ -242,7 +252,7 @@
     <span class="chip chip-r4">Above</span>
     <span class="chip chip-r5">Well above</span>
     <span class="chip chip-grey">Not assessed</span>
-    <span style="margin-left:8px;font-size:.72rem;color:var(--muted)">Class band: outlined chip</span>
+    <span id="class-band-legend" style="margin-left:8px;font-size:.72rem;color:var(--muted)">Class band: outlined chip</span>
   </div>
   <div id="class-view-content">
     <div class="empty"><div class="icon">📊</div><p>Load data first to see the class view.</p></div>
@@ -259,22 +269,14 @@
 <!-- SETTINGS -->
 <div class="page" id="page-settings">
   <div class="card">
-    <div class="card-title">Tests</div>
-    <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">
-      Add, remove, or rename tests. Max score is used for display only. You need at least one test.
-    </p>
-    <div id="test-config-list"></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-secondary" onclick="addTest()">+ Add Test</button>
-      <button class="btn btn-primary" onclick="saveTestConfig()">Save Tests</button>
-    </div>
+    <div class="card-title">Setup</div>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px">Revisit your initial configuration — tests and class grouping settings.</p>
+    <button class="btn btn-secondary" onclick="editSetup();showPage('data')">Edit Setup</button>
   </div>
-
   <div class="card">
     <div class="card-title">Relative Band Thresholds</div>
     <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">
-      SD distance from the mean that defines band boundaries. Inner threshold separates
-      "Around average" from "Below/Above". Outer separates "Below/Above" from "Well below/above".
+      Inner threshold separates "Around average" from "Below / Above". Outer separates those from "Well below / Well above".
     </p>
     <div class="form-row" style="max-width:400px">
       <div><label>Inner threshold (SD)</label><input type="number" id="sd-inner" step="0.1" value="0.5"></div>
@@ -286,7 +288,6 @@
 
 </main>
 
-<!-- Roll mapping modal -->
 <div class="modal-bg" id="roll-modal">
   <div class="modal">
     <h2>Map Roll Columns</h2>
@@ -299,7 +300,6 @@
   </div>
 </div>
 
-<!-- Test CSV mapping modal -->
 <div class="modal-bg" id="map-modal">
   <div class="modal">
     <h2>Map Columns — <span id="map-test-name"></span></h2>
@@ -312,7 +312,6 @@
   </div>
 </div>
 
-<!-- Student profile modal -->
 <div class="modal-bg" id="profile-modal">
   <div class="modal" style="max-width:700px">
     <h2 id="profile-name">Student Profile</h2>
@@ -326,407 +325,387 @@
 <div id="toast"></div>
 
 <script>
-const STORAGE_KEY = 'pretest_v2';
-
-const DEFAULT_TESTS = [
-  { name: 'Reading',     max: 25 },
-  { name: 'Spelling',    max: 10 },
-  { name: 'Conventions', max: 20 },
-  { name: 'Writing',     max: 10 },
+const STORAGE_KEY='pretest_v2';
+const DEFAULT_TESTS=[
+  {name:'Reading',max:25},{name:'Spelling',max:10},
+  {name:'Conventions',max:20},{name:'Writing',max:10},
 ];
+const DEFAULT_SETTINGS={tests:DEFAULT_TESTS,sd:{inner:0.5,outer:1.5},useClasses:true,setupDone:false};
+const BAND_LABELS=['Well below average','Below average','Around average','Above average','Well above average'];
+const BAND_CLASSES=['chip-r1','chip-r2','chip-r3','chip-r4','chip-r5'];
+const TEST_ICONS=['📖','✏️','📝','✍️','🔢','🔬','🌍','🎨','🎵','💡'];
 
-const DEFAULT_SETTINGS = {
-  tests: DEFAULT_TESTS,
-  sd: { inner: 0.5, outer: 1.5 },
-};
-
-const BAND_LABELS  = ['Well below average','Below average','Around average','Above average','Well above average'];
-const BAND_CLASSES = ['chip-r1','chip-r2','chip-r3','chip-r4','chip-r5'];
-
-function defaultState() {
-  return { students: {}, settings: JSON.parse(JSON.stringify(DEFAULT_SETTINGS)) };
-}
-
-let state = (() => {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
-  } catch(e) {}
-  return defaultState();
+let state=(()=>{
+  try{const r=localStorage.getItem(STORAGE_KEY);if(r)return JSON.parse(r);}catch(e){}
+  return{students:{},settings:JSON.parse(JSON.stringify(DEFAULT_SETTINGS))};
 })();
 
-function saveState() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  updateHeaderSub();
+function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));updateHeaderSub();}
+function getTests(){return state.settings.tests||DEFAULT_TESTS;}
+function useClasses(){return state.settings.useClasses!==false;}
+
+function updateHeaderSub(){
+  const n=Object.keys(state.students).length;
+  const cls=new Set(Object.values(state.students).map(s=>s.class).filter(Boolean));
+  document.getElementById('header-sub').textContent=n
+    ?(useClasses()?`${n} students · ${cls.size} classes`:`${n} students`)
+    :'No data loaded';
 }
 
-function getTests() { return state.settings.tests || DEFAULT_TESTS; }
-
-function updateHeaderSub() {
-  const n = Object.keys(state.students).length;
-  const classes = new Set(Object.values(state.students).map(s => s.class).filter(Boolean));
-  document.getElementById('header-sub').textContent =
-    n ? `${n} students · ${classes.size} classes` : 'No data loaded';
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  ['data','class','cohort','settings'].forEach((p,i)=>
+    document.querySelectorAll('nav button')[i].classList.toggle('active',p===id));
+  if(id==='data'){renderSetupUI();renderUploadZones();renderDataSummary();}
+  if(id==='class')renderClassView();
+  if(id==='cohort')renderCohortView();
+  if(id==='settings')renderSettings();
 }
 
-// ── Navigation ───────────────────────────────────────────────
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  ['data','class','cohort','settings'].forEach((p,i) =>
-    document.querySelectorAll('nav button')[i].classList.toggle('active', p === id));
-  if (id === 'data')     { renderUploadZones(); renderDataSummary(); }
-  if (id === 'class')    renderClassView();
-  if (id === 'cohort')   renderCohortView();
-  if (id === 'settings') renderSettings();
+// ── Setup ────────────────────────────────────────────────────
+let _pendingGrouping=true;
+
+function renderSetupUI(){
+  const done=state.settings.setupDone;
+  document.getElementById('setup-card').style.display=done?'none':'';
+  document.getElementById('setup-summary').style.display=done?'':'none';
+  if(!done){
+    _pendingGrouping=useClasses();
+    renderSetupTestList();
+    setGrouping(_pendingGrouping);
+  } else {
+    const t=getTests();
+    document.getElementById('setup-summary-text').innerHTML=
+      `<strong>${t.length} test${t.length!==1?'s':''}</strong> — ${t.map(x=>x.name).join(', ')} &nbsp;·&nbsp; <strong>${useClasses()?'Class groupings on':'Cohort only'}</strong>`;
+  }
+  applyGroupingToUI();
 }
 
-// ── Upload zones (dynamic) ───────────────────────────────────
-const TEST_ICONS = ['📖','✏️','📝','✍️','🔢','🔬','🌍','🎨','🎵','💡'];
+function renderSetupTestList(){
+  const tests=getTests();
+  document.getElementById('setup-test-list').innerHTML=tests.map((t,i)=>`
+    <div class="test-config-row">
+      <input type="text" value="${t.name}" id="stname-${i}" placeholder="Test name">
+      <input type="number" value="${t.max}" id="stmax-${i}" placeholder="Max" style="max-width:80px" min="1">
+      <label style="margin:0;font-size:.72rem;color:var(--muted);white-space:nowrap">Max score</label>
+      ${tests.length>1?`<button class="btn btn-danger btn-sm" onclick="setupRemoveTest(${i})">✕</button>`:''}
+    </div>`).join('');
+}
 
-function renderUploadZones() {
-  const tests = getTests();
-  const container = document.getElementById('test-upload-zones');
-  container.innerHTML = tests.map((t, i) => {
-    const count = Object.values(state.students).filter(s => s.scores[t.name] != null).length;
-    const loaded = count > 0;
-    return `<div id="zone-${i}" class="upload-zone"
-        onclick="triggerUpload(${i})"
-        ondragover="dragOver(event)" ondrop="dropFile(event,${i})"
-        style="${loaded ? 'border-color:var(--accent);background:#EEF3F0;' : ''}">
-      <div class="icon">${TEST_ICONS[i % TEST_ICONS.length]}</div>
+function setupAddTest(){
+  const t=getTests();t.push({name:`Test ${t.length+1}`,max:10});
+  state.settings.tests=t;renderSetupTestList();
+}
+
+function setupRemoveTest(idx){
+  const t=getTests();if(t.length<=1){toast('You need at least one test');return;}
+  t.splice(idx,1);state.settings.tests=t;renderSetupTestList();
+}
+
+function setGrouping(val){
+  _pendingGrouping=val;
+  document.getElementById('grp-yes').classList.toggle('active',val);
+  document.getElementById('grp-no').classList.toggle('active',!val);
+  document.getElementById('grp-hint').textContent=val
+    ?"Students will be grouped by class. You'll see class-level bands alongside cohort bands."
+    :'All students are treated as one cohort. Class columns and filters are hidden throughout.';
+}
+
+function confirmSetup(){
+  const tests=getTests();
+  const newTests=tests.map((t,i)=>{
+    const nm=(document.getElementById(`stname-${i}`)?.value||'').trim()||t.name;
+    const mx=parseFloat(document.getElementById(`stmax-${i}`)?.value);
+    if(nm!==t.name){
+      Object.values(state.students).forEach(s=>{
+        if(s.scores[t.name]!=null){s.scores[nm]=s.scores[t.name];delete s.scores[t.name];}
+      });
+    }
+    return{name:nm,max:isNaN(mx)?t.max:mx};
+  });
+  state.settings.tests=newTests;
+  state.settings.useClasses=_pendingGrouping;
+  state.settings.setupDone=true;
+  saveState();renderSetupUI();renderUploadZones();renderDataSummary();
+  toast('Setup saved');
+}
+
+function editSetup(){state.settings.setupDone=false;saveState();renderSetupUI();}
+
+function applyGroupingToUI(){
+  const on=useClasses();
+  const fw=document.getElementById('class-filter-wrap');if(fw)fw.style.display=on?'':'none';
+  const cl=document.getElementById('class-band-legend');if(cl)cl.style.display=on?'':'none';
+  const mc=document.getElementById('me-class-wrap');if(mc)mc.style.display=on?'':'none';
+  const rh=document.getElementById('roll-zone-hint');
+  if(rh)rh.textContent=on?'Needs: first name, last name, email, class':'Needs: first name, last name, email';
+}
+
+// ── Upload zones ─────────────────────────────────────────────
+function renderUploadZones(){
+  const tests=getTests();
+  document.getElementById('test-upload-zones').innerHTML=tests.map((t,i)=>{
+    const count=Object.values(state.students).filter(s=>s.scores[t.name]!=null).length;
+    const loaded=count>0;
+    return`<div id="zone-${i}" class="upload-zone"
+        onclick="triggerUpload(${i})" ondragover="dragOver(event)" ondrop="dropFile(event,${i})"
+        style="${loaded?'border-color:var(--accent);background:#EEF3F0;':''}">
+      <div class="icon">${TEST_ICONS[i%TEST_ICONS.length]}</div>
       <p><strong>${t.name}</strong><br>Drop CSV or click to upload</p>
-      <div id="status-${i}">${loaded ? `<div style="margin-top:6px;color:var(--accent);font-size:.73rem;font-weight:600">✓ ${count} records loaded</div>` : ''}</div>
+      <div id="status-${i}">${loaded?`<div style="margin-top:6px;color:var(--accent);font-size:.73rem;font-weight:600">✓ ${count} records loaded</div>`:''}</div>
     </div>`;
   }).join('');
-  const sel = document.getElementById('me-test');
-  if (sel) sel.innerHTML = tests.map(t => `<option>${t.name}</option>`).join('');
+  const sel=document.getElementById('me-test');
+  if(sel)sel.innerHTML=tests.map(t=>`<option>${t.name}</option>`).join('');
 }
 
 // ── CSV parsing ──────────────────────────────────────────────
-function parseCSVLine(line) {
-  const result = []; let cur = ''; let inQ = false;
-  for (const c of line) {
-    if (c === '"') inQ = !inQ;
-    else if (c === ',' && !inQ) { result.push(cur.trim()); cur = ''; }
-    else cur += c;
+function parseCSVLine(line){
+  const r=[];let cur='';let inQ=false;
+  for(const c of line){
+    if(c==='"')inQ=!inQ;
+    else if(c===','&&!inQ){r.push(cur.trim());cur='';}
+    else cur+=c;
   }
-  result.push(cur.trim()); return result;
+  r.push(cur.trim());return r;
 }
-
-function parseCSVText(text) {
-  const lines = text.split(/\r?\n/).filter(l => l.trim());
-  if (lines.length < 2) return null;
-  return { headers: parseCSVLine(lines[0]), rows: lines.slice(1).map(parseCSVLine) };
+function parseCSVText(text){
+  const lines=text.split(/\r?\n/).filter(l=>l.trim());
+  if(lines.length<2)return null;
+  return{headers:parseCSVLine(lines[0]),rows:lines.slice(1).map(parseCSVLine)};
 }
-
-function guessCol(headers, patterns) {
-  for (let i = 0; i < headers.length; i++) {
-    const h = headers[i].toLowerCase();
-    if (patterns.some(p => h.includes(p))) return i;
-  }
+function guessCol(headers,pats){
+  for(let i=0;i<headers.length;i++)if(pats.some(p=>headers[i].toLowerCase().includes(p)))return i;
   return -1;
 }
-
-function dragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag'); }
-
-// ── Roll upload ──────────────────────────────────────────────
-let pendingRoll = null;
-
-function triggerRollUpload() { document.getElementById('roll-file-input').click(); }
-function dropRollFile(e) { e.preventDefault(); e.currentTarget.classList.remove('drag'); readFile(e.dataTransfer.files[0], openRollModal); }
-function handleRollFileInput(e) { readFile(e.target.files[0], openRollModal); e.target.value = ''; }
-
-function readFile(file, cb) {
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => cb(ev.target.result);
-  reader.readAsText(file);
+function dragOver(e){e.preventDefault();e.currentTarget.classList.add('drag');}
+function readFile(file,cb){
+  if(!file)return;const r=new FileReader();r.onload=ev=>cb(ev.target.result);r.readAsText(file);
 }
 
-function openRollModal(text) {
-  const parsed = parseCSVText(text);
-  if (!parsed) { toast('Roll CSV appears empty'); return; }
-  pendingRoll = parsed;
-  const { headers, rows } = parsed;
-  const preview = rows.slice(0, 3);
-  const fields = [
-    { key: 'email', label: 'Email (Student ID)', required: true,  pats: ['email','mail','address'] },
-    { key: 'first', label: 'First Name',          required: true,  pats: ['first','given','fore'] },
-    { key: 'last',  label: 'Last Name',            required: true,  pats: ['last','sur','family'] },
-    { key: 'class', label: 'Class / Group',        required: false, pats: ['class','group','room','year','cohort','form'] },
+// ── Roll upload ──────────────────────────────────────────────
+let pendingRoll=null;
+function triggerRollUpload(){document.getElementById('roll-file-input').click();}
+function dropRollFile(e){e.preventDefault();e.currentTarget.classList.remove('drag');readFile(e.dataTransfer.files[0],openRollModal);}
+function handleRollFileInput(e){readFile(e.target.files[0],openRollModal);e.target.value='';}
+
+function openRollModal(text){
+  const parsed=parseCSVText(text);if(!parsed){toast('Roll CSV appears empty');return;}
+  pendingRoll=parsed;
+  const{headers,rows}=parsed;const preview=rows.slice(0,3);
+  const fields=[
+    {key:'email',label:'Email (Student ID)',required:true, pats:['email','mail','address']},
+    {key:'first',label:'First Name',        required:true, pats:['first','given','fore']},
+    {key:'last', label:'Last Name',         required:true, pats:['last','sur','family']},
+    ...(useClasses()?[{key:'class',label:'Class / Group',required:false,pats:['class','group','room','year','cohort','form']}]:[]),
   ];
-  document.getElementById('roll-map-fields').innerHTML = fields.map(f => {
-    const g = guessCol(headers, f.pats);
-    return `<div class="map-row">
-      <div class="map-label">${f.label}${f.required ? ' <span style="color:#c0392b">*</span>' : ''}</div>
+  document.getElementById('roll-map-fields').innerHTML=fields.map(f=>{
+    const g=guessCol(headers,f.pats);
+    return`<div class="map-row">
+      <div class="map-label">${f.label}${f.required?' <span style="color:#c0392b">*</span>':''}</div>
       <div style="flex:1">
         <select id="rmap-${f.key}" style="width:100%">
           <option value="">— skip —</option>
-          ${headers.map((h,i) => `<option value="${i}" ${i===g?'selected':''}>${h}</option>`).join('')}
+          ${headers.map((h,i)=>`<option value="${i}" ${i===g?'selected':''}>${h}</option>`).join('')}
         </select>
-        <div style="font-size:.7rem;color:var(--muted);margin-top:3px">
-          Preview: ${g >= 0 ? preview.map(r=>r[g]).filter(Boolean).slice(0,2).join(', ') : '—'}
-        </div>
+        <div style="font-size:.7rem;color:var(--muted);margin-top:3px">Preview: ${g>=0?preview.map(r=>r[g]).filter(Boolean).slice(0,2).join(', '):'—'}</div>
       </div>
     </div>`;
   }).join('');
   document.getElementById('roll-modal').classList.add('open');
 }
 
-function applyRollMapping() {
-  const eIdx = parseInt(document.getElementById('rmap-email').value);
-  const fIdx = parseInt(document.getElementById('rmap-first').value);
-  const lIdx = parseInt(document.getElementById('rmap-last').value);
-  const cIdx = parseInt(document.getElementById('rmap-class').value);
-  if (isNaN(eIdx) || isNaN(fIdx) || isNaN(lIdx)) { toast('Email, First Name and Last Name are required'); return; }
-
-  let n = 0;
-  pendingRoll.rows.forEach(row => {
-    const email = row[eIdx]?.trim().toLowerCase();
-    if (!email) return;
-    const name = [row[fIdx]?.trim(), row[lIdx]?.trim()].filter(Boolean).join(' ');
-    const cls  = (!isNaN(cIdx) && row[cIdx]) ? row[cIdx].trim() : '';
-    if (!state.students[email]) state.students[email] = { name:'', class:'', scores:{}, fromRoll:false };
-    state.students[email].name     = name || state.students[email].name;
-    state.students[email].class    = cls  || state.students[email].class;
-    state.students[email].fromRoll = true;
-    n++;
+function applyRollMapping(){
+  const eIdx=parseInt(document.getElementById('rmap-email').value);
+  const fIdx=parseInt(document.getElementById('rmap-first').value);
+  const lIdx=parseInt(document.getElementById('rmap-last').value);
+  const cEl=document.getElementById('rmap-class');const cIdx=cEl?parseInt(cEl.value):NaN;
+  if(isNaN(eIdx)||isNaN(fIdx)||isNaN(lIdx)){toast('Email, First Name and Last Name are required');return;}
+  let n=0;
+  pendingRoll.rows.forEach(row=>{
+    const email=row[eIdx]?.trim().toLowerCase();if(!email)return;
+    const name=[row[fIdx]?.trim(),row[lIdx]?.trim()].filter(Boolean).join(' ');
+    const cls=(!isNaN(cIdx)&&row[cIdx])?row[cIdx].trim():'';
+    if(!state.students[email])state.students[email]={name:'',class:'',scores:{},fromRoll:false};
+    state.students[email].name=name||state.students[email].name;
+    state.students[email].class=cls||state.students[email].class;
+    state.students[email].fromRoll=true;n++;
   });
-
-  saveState(); closeRollModal();
-  const zone = document.getElementById('zone-roll');
-  const stat = document.getElementById('status-roll');
-  if (zone) { zone.style.borderColor='var(--accent)'; zone.style.background='#EEF3F0'; }
-  if (stat) stat.innerHTML = `<div style="margin-top:6px;color:var(--accent);font-size:.73rem;font-weight:600">✓ ${n} students on roll</div>`;
-  renderDataSummary(); updateClassFilter();
-  toast(`Roll imported — ${n} students`);
+  saveState();closeRollModal();
+  const zone=document.getElementById('zone-roll'),stat=document.getElementById('status-roll');
+  if(zone){zone.style.borderColor='var(--accent)';zone.style.background='#EEF3F0';}
+  if(stat)stat.innerHTML=`<div style="margin-top:6px;color:var(--accent);font-size:.73rem;font-weight:600">✓ ${n} students on roll</div>`;
+  renderDataSummary();updateClassFilter();toast(`Roll imported — ${n} students`);
 }
-
-function closeRollModal() { document.getElementById('roll-modal').classList.remove('open'); }
+function closeRollModal(){document.getElementById('roll-modal').classList.remove('open');}
 
 // ── Test CSV upload ──────────────────────────────────────────
-let pendingCSV = { testIdx: null, data: null };
+let pendingCSV={testIdx:null,data:null};
+function triggerUpload(idx){pendingCSV.testIdx=idx;document.getElementById('file-input').click();}
+function dropFile(e,idx){e.preventDefault();e.currentTarget.classList.remove('drag');pendingCSV.testIdx=idx;readFile(e.dataTransfer.files[0],openMapModal);}
+function handleFileInput(e){readFile(e.target.files[0],openMapModal);e.target.value='';}
 
-function triggerUpload(idx) { pendingCSV.testIdx = idx; document.getElementById('file-input').click(); }
-function dropFile(e, idx)   { e.preventDefault(); e.currentTarget.classList.remove('drag'); pendingCSV.testIdx = idx; readFile(e.dataTransfer.files[0], openMapModal); }
-function handleFileInput(e) { readFile(e.target.files[0], openMapModal); e.target.value = ''; }
-
-function openMapModal(text) {
-  const parsed = parseCSVText(text);
-  if (!parsed) { toast('CSV appears empty'); return; }
-  pendingCSV.data = parsed;
-  const { headers, rows } = parsed;
-  const testName = getTests()[pendingCSV.testIdx]?.name || 'Test';
-  document.getElementById('map-test-name').textContent = testName;
-  const preview = rows.slice(0, 3);
-  const fields = [
-    { key: 'email', label: 'Student Email', required: true,  pats: ['email','mail','address','id'] },
-    { key: 'name',  label: 'Full Name',     required: false, pats: ['name','full','student'] },
-    { key: 'class', label: 'Class',         required: false, pats: ['class','group','room','year','cohort'] },
-    { key: 'score', label: 'Total Score',   required: true,  pats: ['score','total','mark','result','points','grade'] },
+function openMapModal(text){
+  const parsed=parseCSVText(text);if(!parsed){toast('CSV appears empty');return;}
+  pendingCSV.data=parsed;
+  const{headers,rows}=parsed;
+  const testName=getTests()[pendingCSV.testIdx]?.name||'Test';
+  document.getElementById('map-test-name').textContent=testName;
+  const preview=rows.slice(0,3);
+  const fields=[
+    {key:'email',label:'Student Email',required:true, pats:['email','mail','address','id']},
+    {key:'name', label:'Full Name',    required:false,pats:['name','full','student']},
+    ...(useClasses()?[{key:'class',label:'Class',required:false,pats:['class','group','room','year','cohort']}]:[]),
+    {key:'score',label:'Total Score',  required:true, pats:['score','total','mark','result','points','grade']},
   ];
-  document.getElementById('map-fields').innerHTML = fields.map(f => {
-    const g = guessCol(headers, f.pats);
-    return `<div class="map-row">
-      <div class="map-label">${f.label}${f.required ? ' <span style="color:#c0392b">*</span>' : ''}</div>
+  document.getElementById('map-fields').innerHTML=fields.map(f=>{
+    const g=guessCol(headers,f.pats);
+    return`<div class="map-row">
+      <div class="map-label">${f.label}${f.required?' <span style="color:#c0392b">*</span>':''}</div>
       <div style="flex:1">
         <select id="tmap-${f.key}" style="width:100%">
           <option value="">— skip —</option>
-          ${headers.map((h,i) => `<option value="${i}" ${i===g?'selected':''}>${h}</option>`).join('')}
+          ${headers.map((h,i)=>`<option value="${i}" ${i===g?'selected':''}>${h}</option>`).join('')}
         </select>
-        <div style="font-size:.7rem;color:var(--muted);margin-top:3px">
-          Preview: ${g >= 0 ? preview.map(r=>r[g]).filter(Boolean).slice(0,2).join(', ') : '—'}
-        </div>
+        <div style="font-size:.7rem;color:var(--muted);margin-top:3px">Preview: ${g>=0?preview.map(r=>r[g]).filter(Boolean).slice(0,2).join(', '):'—'}</div>
       </div>
     </div>`;
   }).join('');
   document.getElementById('map-modal').classList.add('open');
 }
 
-function applyMapping() {
-  const eIdx = parseInt(document.getElementById('tmap-email').value);
-  const nIdx = parseInt(document.getElementById('tmap-name').value);
-  const cIdx = parseInt(document.getElementById('tmap-class').value);
-  const sIdx = parseInt(document.getElementById('tmap-score').value);
-  if (isNaN(eIdx) || isNaN(sIdx)) { toast('Email and Score are required'); return; }
-
-  const testName = getTests()[pendingCSV.testIdx]?.name;
-  if (!testName) return;
-  let n = 0;
-  pendingCSV.data.rows.forEach(row => {
-    const email = row[eIdx]?.trim().toLowerCase();
-    if (!email) return;
-    if (!state.students[email]) state.students[email] = { name:'', class:'', scores:{}, fromRoll:false };
-    const s = state.students[email];
-    if (!s.fromRoll) {
-      if (!isNaN(nIdx) && row[nIdx]) s.name  = row[nIdx].trim();
-      if (!isNaN(cIdx) && row[cIdx]) s.class = row[cIdx].trim();
+function applyMapping(){
+  const eIdx=parseInt(document.getElementById('tmap-email').value);
+  const nIdx=parseInt(document.getElementById('tmap-name')?.value);
+  const cEl=document.getElementById('tmap-class');const cIdx=cEl?parseInt(cEl.value):NaN;
+  const sIdx=parseInt(document.getElementById('tmap-score').value);
+  if(isNaN(eIdx)||isNaN(sIdx)){toast('Email and Score are required');return;}
+  const testName=getTests()[pendingCSV.testIdx]?.name;if(!testName)return;
+  let n=0;
+  pendingCSV.data.rows.forEach(row=>{
+    const email=row[eIdx]?.trim().toLowerCase();if(!email)return;
+    if(!state.students[email])state.students[email]={name:'',class:'',scores:{},fromRoll:false};
+    const s=state.students[email];
+    if(!s.fromRoll){
+      if(!isNaN(nIdx)&&row[nIdx])s.name=row[nIdx].trim();
+      if(!isNaN(cIdx)&&row[cIdx])s.class=row[cIdx].trim();
     }
-    const score = parseFloat(row[sIdx]);
-    if (!isNaN(score)) { s.scores[testName] = score; n++; }
+    const score=parseFloat(row[sIdx]);if(!isNaN(score)){s.scores[testName]=score;n++;}
   });
-
-  saveState(); closeMapModal();
-  const idx = pendingCSV.testIdx;
-  const zEl = document.getElementById(`zone-${idx}`);
-  const sEl = document.getElementById(`status-${idx}`);
-  if (zEl) { zEl.style.borderColor='var(--accent)'; zEl.style.background='#EEF3F0'; }
-  if (sEl) sEl.innerHTML = `<div style="margin-top:6px;color:var(--accent);font-size:.73rem;font-weight:600">✓ ${n} records loaded</div>`;
-  renderDataSummary(); updateClassFilter();
-  toast(`Imported ${n} scores for ${testName}`);
+  saveState();closeMapModal();
+  const zEl=document.getElementById(`zone-${pendingCSV.testIdx}`);
+  const sEl=document.getElementById(`status-${pendingCSV.testIdx}`);
+  if(zEl){zEl.style.borderColor='var(--accent)';zEl.style.background='#EEF3F0';}
+  if(sEl)sEl.innerHTML=`<div style="margin-top:6px;color:var(--accent);font-size:.73rem;font-weight:600">✓ ${n} records loaded</div>`;
+  renderDataSummary();updateClassFilter();toast(`Imported ${n} scores for ${testName}`);
 }
-
-function closeMapModal() { document.getElementById('map-modal').classList.remove('open'); }
+function closeMapModal(){document.getElementById('map-modal').classList.remove('open');}
 
 // ── Manual entry ─────────────────────────────────────────────
-function manualEntry() {
-  const email = document.getElementById('me-email').value.trim().toLowerCase();
-  const name  = document.getElementById('me-name').value.trim();
-  const cls   = document.getElementById('me-class').value.trim();
-  const test  = document.getElementById('me-test').value;
-  const score = parseFloat(document.getElementById('me-score').value);
-  if (!email) { toast('Email is required'); return; }
-  if (isNaN(score)) { toast('Enter a valid score'); return; }
-  if (!state.students[email]) state.students[email] = { name:'', class:'', scores:{}, fromRoll:false };
-  const s = state.students[email];
-  if (name) s.name = name;
-  if (cls)  s.class = cls;
-  s.scores[test] = score;
-  saveState(); renderDataSummary(); updateClassFilter();
-  toast(`Saved ${test} score for ${name || email}`);
-  document.getElementById('me-score').value = '';
+function manualEntry(){
+  const email=document.getElementById('me-email').value.trim().toLowerCase();
+  const name=document.getElementById('me-name').value.trim();
+  const cls=document.getElementById('me-class')?.value.trim()||'';
+  const test=document.getElementById('me-test').value;
+  const score=parseFloat(document.getElementById('me-score').value);
+  if(!email){toast('Email is required');return;}
+  if(isNaN(score)){toast('Enter a valid score');return;}
+  if(!state.students[email])state.students[email]={name:'',class:'',scores:{},fromRoll:false};
+  const s=state.students[email];
+  if(name)s.name=name;if(cls&&useClasses())s.class=cls;
+  s.scores[test]=score;
+  saveState();renderDataSummary();updateClassFilter();
+  toast(`Saved ${test} score for ${name||email}`);
+  document.getElementById('me-score').value='';
 }
 
 // ── Data summary ─────────────────────────────────────────────
-function renderDataSummary() {
-  const students = Object.entries(state.students);
-  const tests = getTests();
-  if (!students.length) { document.getElementById('data-summary-card').style.display = 'none'; return; }
-  document.getElementById('data-summary-card').style.display = '';
-  const classes = new Set(students.map(([,s]) => s.class).filter(Boolean));
-
-  document.getElementById('data-stats').innerHTML = [
-    { val: students.length, lbl: 'Students' },
-    { val: classes.size,    lbl: 'Classes' },
-    ...tests.map(t => ({ val: students.filter(([,s]) => s.scores[t.name] != null).length, lbl: `${t.name} scores` })),
-  ].map(s => `<div class="stat-box"><div class="val">${s.val}</div><div class="lbl">${s.lbl}</div></div>`).join('');
-
-  document.getElementById('data-thead').innerHTML =
-    `<th>Email</th><th>Name</th><th>Class</th>${tests.map(t=>`<th>${t.name}</th>`).join('')}`;
-
-  document.getElementById('data-tbody').innerHTML = students
-    .sort(([,a],[,b]) => (a.class||'').localeCompare(b.class||'') || (a.name||'').localeCompare(b.name||''))
-    .map(([email,s]) => `<tr>
+function renderDataSummary(){
+  const students=Object.entries(state.students);const tests=getTests();
+  if(!students.length){document.getElementById('data-summary-card').style.display='none';return;}
+  document.getElementById('data-summary-card').style.display='';
+  const classes=new Set(students.map(([,s])=>s.class).filter(Boolean));
+  const items=[{val:students.length,lbl:'Students'}];
+  if(useClasses())items.push({val:classes.size,lbl:'Classes'});
+  tests.forEach(t=>items.push({val:students.filter(([,s])=>s.scores[t.name]!=null).length,lbl:`${t.name} scores`}));
+  document.getElementById('data-stats').innerHTML=items.map(s=>
+    `<div class="stat-box"><div class="val">${s.val}</div><div class="lbl">${s.lbl}</div></div>`).join('');
+  document.getElementById('data-thead').innerHTML=
+    `<th>Email</th><th>Name</th>${useClasses()?'<th>Class</th>':''}${tests.map(t=>`<th>${t.name}</th>`).join('')}`;
+  document.getElementById('data-tbody').innerHTML=students
+    .sort(([,a],[,b])=>(a.class||'').localeCompare(b.class||'')||(a.name||'').localeCompare(b.name||''))
+    .map(([email,s])=>`<tr>
       <td class="mono">${email}</td>
-      <td>${s.name || '<em style="color:var(--muted)">—</em>'}</td>
-      <td>${s.class || '<em style="color:var(--muted)">—</em>'}</td>
-      ${tests.map(t => `<td>${s.scores[t.name] != null ? s.scores[t.name] : '<span style="color:var(--muted)">—</span>'}</td>`).join('')}
+      <td>${s.name||'<em style="color:var(--muted)">—</em>'}</td>
+      ${useClasses()?`<td>${s.class||'<em style="color:var(--muted)">—</em>'}</td>`:''}
+      ${tests.map(t=>`<td>${s.scores[t.name]!=null?s.scores[t.name]:'<span style="color:var(--muted)">—</span>'}</td>`).join('')}
     </tr>`).join('');
-
   updateHeaderSub();
 }
 
 // ── Analytics ────────────────────────────────────────────────
-function calcStats(scoresList) {
-  const vals = scoresList.filter(v => v != null);
-  if (!vals.length) return { mean: null, sd: null, n: 0 };
-  const mean = vals.reduce((a,b) => a+b, 0) / vals.length;
-  const sd = vals.length > 1
-    ? Math.sqrt(vals.reduce((a,b) => a+(b-mean)**2, 0) / (vals.length - 1))
-    : 0;
-  return { mean, sd, n: vals.length };
+function calcStats(scores){
+  const v=scores.filter(x=>x!=null);if(!v.length)return{mean:null,sd:null,n:0};
+  const mean=v.reduce((a,b)=>a+b,0)/v.length;
+  const sd=v.length>1?Math.sqrt(v.reduce((a,b)=>a+(b-mean)**2,0)/(v.length-1)):0;
+  return{mean,sd,n:v.length};
 }
-
-function cohortStats() {
-  const tests = getTests();
-  const out = {};
-  tests.forEach(t => {
-    const scores = Object.values(state.students).map(s => s.scores[t.name]).filter(v => v != null);
-    out[t.name] = calcStats(scores);
-  });
+function cohortStats(){
+  const out={};
+  getTests().forEach(t=>{out[t.name]=calcStats(Object.values(state.students).map(s=>s.scores[t.name]));});
   return out;
 }
-
-function classStats(cls) {
-  const tests = getTests();
-  const out = {};
-  const classStudents = Object.values(state.students).filter(s => s.class === cls);
-  tests.forEach(t => {
-    const scores = classStudents.map(s => s.scores[t.name]).filter(v => v != null);
-    out[t.name] = calcStats(scores);
-  });
+function classStatsFor(cls){
+  const cl=Object.values(state.students).filter(s=>s.class===cls);
+  const out={};
+  getTests().forEach(t=>{out[t.name]=calcStats(cl.map(s=>s.scores[t.name]));});
   return out;
 }
-
-function getBand(score, stats) {
-  if (score == null || !stats || stats.mean === null) return null;
-  const { mean, sd } = stats;
-  const { inner, outer } = state.settings.sd;
-  if (sd === 0) return 2;
-  const z = (score - mean) / sd;
-  if (z >  outer) return 4;
-  if (z >  inner) return 3;
-  if (z >= -inner) return 2;
-  if (z >= -outer) return 1;
-  return 0;
+function getBand(score,stats){
+  if(score==null||!stats||stats.mean===null)return null;
+  if(stats.sd===0)return 2;
+  const z=(score-stats.mean)/stats.sd;
+  const{inner,outer}=state.settings.sd;
+  if(z>outer)return 4;if(z>inner)return 3;if(z>=-inner)return 2;if(z>=-outer)return 1;return 0;
 }
-
-function bandChip(bandIdx, isClass) {
-  if (bandIdx === null) return `<span class="chip chip-grey">Not assessed</span>`;
-  const label = BAND_LABELS[bandIdx];
-  const cls   = BAND_CLASSES[bandIdx];
-  if (isClass) {
-    const colors = ['var(--r1-bg)','var(--r2-bg)','var(--r3-bg)','var(--r4-bg)','var(--r5-bg)'];
-    return `<span class="chip" style="outline:2px solid ${colors[bandIdx]};color:${colors[bandIdx]};background:transparent">${label}</span>`;
+function bandChip(b,isClass){
+  if(b===null)return`<span class="chip chip-grey">Not assessed</span>`;
+  if(isClass){
+    const cols=['var(--r1-bg)','var(--r2-bg)','var(--r3-bg)','var(--r4-bg)','var(--r5-bg)'];
+    return`<span class="chip" style="outline:2px solid ${cols[b]};color:${cols[b]};background:transparent">${BAND_LABELS[b]}</span>`;
   }
-  return `<span class="chip ${cls}">${label}</span>`;
+  return`<span class="chip ${BAND_CLASSES[b]}">${BAND_LABELS[b]}</span>`;
 }
-
-function getSDScore(email, cStats) {
-  const s = state.students[email];
-  if (!s) return null;
-  const tests = getTests();
-  const vals = tests.map(t => {
-    const score = s.scores[t.name];
-    const st = cStats[t.name];
-    if (score == null || !st || !st.sd || st.sd === 0) return null;
-    return (score - st.mean) / st.sd;
-  }).filter(v => v != null);
-  return vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
+function getSDScore(email,cStats){
+  const s=state.students[email];if(!s)return null;
+  const v=getTests().map(t=>{
+    const sc=s.scores[t.name],st=cStats[t.name];
+    if(sc==null||!st||!st.sd||st.sd===0)return null;
+    return(sc-st.mean)/st.sd;
+  }).filter(x=>x!=null);
+  return v.length?v.reduce((a,b)=>a+b,0)/v.length:null;
 }
-
-function getPriority(email, cStats) {
-  const s = state.students[email];
-  if (!s) return 'unknown';
-  const tests = getTests();
-  const bands = tests.map(t => getBand(s.scores[t.name], cStats[t.name]));
-  const assessed = bands.filter(b => b !== null);
-  if (assessed.length < tests.length) return 'incomplete';
-  const wellBelow = assessed.filter(b => b === 0).length;
-  const below     = assessed.filter(b => b === 1).length;
-  if (wellBelow >= 1 || below >= 2) return 'high';
-  if (assessed.some(b => b <= 2)) return 'some';
-  return 'ok';
+function getPriority(email,cStats){
+  const s=state.students[email];if(!s)return'unknown';
+  const bands=getTests().map(t=>getBand(s.scores[t.name],cStats[t.name]));
+  const assessed=bands.filter(b=>b!==null);
+  if(assessed.length<getTests().length)return'incomplete';
+  if(assessed.some(b=>b===0)||assessed.filter(b=>b===1).length>=2)return'high';
+  if(assessed.some(b=>b<=2))return'some';
+  return'ok';
 }
-
-function priHtml(p) {
-  return {
-    high: '<span class="pri-high">🔴 High Priority</span>',
-    some: '<span class="pri-some">🟠 Some Support</span>',
-    ok:   '<span class="pri-ok">🟢 On Track</span>',
-    incomplete: '<span class="pri-inc">⚠ Incomplete</span>',
-  }[p] || '—';
+function priHtml(p){
+  return{high:'<span class="pri-high">🔴 High Priority</span>',some:'<span class="pri-some">🟠 Some Support</span>',
+         ok:'<span class="pri-ok">🟢 On Track</span>',incomplete:'<span class="pri-inc">⚠ Incomplete</span>'}[p]||'—';
 }
-
-function sdBar(z) {
-  if (z == null) return '<span style="color:var(--muted);font-size:.73rem">—</span>';
-  const pct  = Math.min(Math.max((z+2)/4*100, 0), 100);
-  const col  = z < -1.5 ? 'var(--r1-bg)' : z < -0.5 ? 'var(--r2-bg)' : z < 0.5 ? 'var(--r3-bg)' : z < 1.5 ? 'var(--r4-bg)' : 'var(--r5-bg)';
-  const left  = z >= 0 ? 50 : pct;
-  const width = Math.abs(pct - 50);
-  return `<div class="sd-bar-wrap">
+function sdBar(z){
+  if(z==null)return'<span style="color:var(--muted);font-size:.73rem">—</span>';
+  const pct=Math.min(Math.max((z+2)/4*100,0),100);
+  const col=z<-1.5?'var(--r1-bg)':z<-0.5?'var(--r2-bg)':z<0.5?'var(--r3-bg)':z<1.5?'var(--r4-bg)':'var(--r5-bg)';
+  const left=z>=0?50:pct,width=Math.abs(pct-50);
+  return`<div class="sd-bar-wrap">
     <div class="sd-val">${z>=0?'+':''}${z.toFixed(2)}</div>
     <div class="sd-bar-track">
       <div class="sd-bar-fill" style="left:${left}%;width:${width}%;background:${col}"></div>
@@ -735,67 +714,61 @@ function sdBar(z) {
   </div>`;
 }
 
-// ── Class view ───────────────────────────────────────────────
-function updateClassFilter() {
-  const classes = [...new Set(Object.values(state.students).map(s=>s.class).filter(Boolean))].sort();
-  const sel = document.getElementById('class-filter');
-  const cur = sel.value;
-  sel.innerHTML = '<option value="__all__">All Classes</option>' +
-    classes.map(c => `<option value="${c}" ${c===cur?'selected':''}>${c}</option>`).join('');
+// ── Class filter ─────────────────────────────────────────────
+function updateClassFilter(){
+  if(!useClasses())return;
+  const cls=[...new Set(Object.values(state.students).map(s=>s.class).filter(Boolean))].sort();
+  const sel=document.getElementById('class-filter');const cur=sel.value;
+  sel.innerHTML='<option value="__all__">All Classes</option>'+
+    cls.map(c=>`<option value="${c}" ${c===cur?'selected':''}>${c}</option>`).join('');
 }
 
-function renderClassView() {
-  const students = Object.entries(state.students);
-  if (!students.length) return;
-  const tests   = getTests();
-  const cls     = document.getElementById('class-filter').value;
-  const sortBy  = document.getElementById('class-sort').value;
-  const cStats  = cohortStats();
-  const clsStatsMap = cls !== '__all__' ? classStats(cls) : cStats;
+// ── Class view ───────────────────────────────────────────────
+function renderClassView(){
+  const students=Object.entries(state.students);if(!students.length)return;
+  const tests=getTests();
+  const cls=useClasses()?document.getElementById('class-filter').value:'__all__';
+  const sortBy=document.getElementById('class-sort').value;
+  const cStats=cohortStats();
+  const clsMap=(useClasses()&&cls!=='__all__')?classStatsFor(cls):cStats;
+  const filtered=cls==='__all__'?students:students.filter(([,s])=>s.class===cls);
+  const withSD=filtered.map(([email,s])=>[email,s,getSDScore(email,cStats)]);
 
-  let filtered = cls === '__all__' ? students : students.filter(([,s]) => s.class === cls);
-  const withSD = filtered.map(([email,s]) => [email, s, getSDScore(email, cStats)]);
-
-  if (sortBy === 'name')     withSD.sort(([,a],[,b]) => (a.name||'').localeCompare(b.name||''));
-  if (sortBy === 'sd_asc')   withSD.sort(([,,a],[,,b]) => (a??99)-(b??99));
-  if (sortBy === 'sd_desc')  withSD.sort(([,,a],[,,b]) => (b??-99)-(a??-99));
-  if (sortBy === 'priority') {
-    const order = { high:0, some:1, ok:2, incomplete:3 };
-    withSD.sort(([ea],[eb]) => (order[getPriority(ea,cStats)]||9)-(order[getPriority(eb,cStats)]||9));
+  if(sortBy==='name')withSD.sort(([,a],[,b])=>(a.name||'').localeCompare(b.name||''));
+  if(sortBy==='sd_asc')withSD.sort(([,,a],[,,b])=>(a??99)-(b??99));
+  if(sortBy==='sd_desc')withSD.sort(([,,a],[,,b])=>(b??-99)-(a??-99));
+  if(sortBy==='priority'){
+    const ord={high:0,some:1,ok:2,incomplete:3};
+    withSD.sort(([ea],[eb])=>(ord[getPriority(ea,cStats)]||9)-(ord[getPriority(eb,cStats)]||9));
   }
+  const sdSorted=[...withSD].filter(([,,z])=>z!=null).sort(([,,a],[,,b])=>a-b);
+  const rankMap={};sdSorted.forEach(([email,,],i)=>rankMap[email]=i+1);
+  const showCls=useClasses(),showClsBand=useClasses()&&cls!=='__all__';
 
-  const sdSorted = [...withSD].filter(([,,z])=>z!=null).sort(([,,a],[,,b])=>a-b);
-  const rankMap  = {};
-  sdSorted.forEach(([email,,],i) => rankMap[email] = i+1);
-
-  document.getElementById('class-view-content').innerHTML = `
+  document.getElementById('class-view-content').innerHTML=`
     <div class="table-wrap"><table>
       <thead><tr>
-        <th>Name</th><th>Class</th>
-        ${tests.map(t => `<th style="min-width:160px">${t.name}<br>
-          <span style="font-size:.62rem;opacity:.75;font-weight:400">Cohort / Class</span></th>`).join('')}
+        <th>Name</th>${showCls?'<th>Class</th>':''}
+        ${tests.map(t=>`<th style="min-width:${showClsBand?'175px':'140px'}">${t.name}${showClsBand?'<br><span style="font-size:.62rem;opacity:.75;font-weight:400">Cohort / Class</span>':''}</th>`).join('')}
         <th>Priority</th><th>Avg SD</th><th>SD Rank</th>
       </tr></thead>
       <tbody>
-        ${withSD.map(([email,s,sdAvg]) => `<tr style="cursor:pointer" onclick="showProfile('${email}')">
-          <td><strong>${s.name||'—'}</strong><br>
-            <span class="mono" style="font-size:.66rem;color:var(--muted)">${email}</span></td>
-          <td>${s.class||'—'}</td>
-          ${tests.map(t => {
-            const score = s.scores[t.name];
-            const cohortBand = getBand(score, cStats[t.name]);
-            const clsBand    = getBand(score, clsStatsMap[t.name]);
-            return `<td>
+        ${withSD.map(([email,s,sdAvg])=>`<tr style="cursor:pointer" onclick="showProfile('${email}')">
+          <td><strong>${s.name||'—'}</strong><br><span class="mono" style="font-size:.66rem;color:var(--muted)">${email}</span></td>
+          ${showCls?`<td>${s.class||'—'}</td>`:''}
+          ${tests.map(t=>{
+            const score=s.scores[t.name];
+            const cb=getBand(score,cStats[t.name]),clb=getBand(score,clsMap[t.name]);
+            return`<td>
               <div style="font-family:'DM Mono',monospace;font-size:.78rem;margin-bottom:4px">
-                ${score != null ? `${score}<span style="color:var(--muted)">/${t.max}</span>` : '<span style="color:var(--muted)">—</span>'}
+                ${score!=null?`${score}<span style="color:var(--muted)">/${t.max}</span>`:'<span style="color:var(--muted)">—</span>'}
               </div>
               <div style="display:flex;gap:4px;flex-wrap:wrap">
-                ${bandChip(cohortBand, false)}
-                ${cls !== '__all__' ? bandChip(clsBand, true) : ''}
+                ${bandChip(cb,false)}${showClsBand?bandChip(clb,true):''}
               </div>
             </td>`;
           }).join('')}
-          <td>${priHtml(getPriority(email, cStats))}</td>
+          <td>${priHtml(getPriority(email,cStats))}</td>
           <td>${sdBar(sdAvg)}</td>
           <td style="text-align:center;font-family:'DM Mono',monospace;font-weight:600">${rankMap[email]||'—'}</td>
         </tr>`).join('')}
@@ -803,258 +776,192 @@ function renderClassView() {
     </table></div>
     <p style="color:var(--muted);font-size:.73rem;margin-top:8px">
       Click any row for the full student profile. SD Rank 1 = lowest cohort position.
-      ${cls !== '__all__' ? 'Outlined chip = band within this class only.' : ''}
+      ${showClsBand?' Outlined chip = band within this class only.':''}
     </p>`;
 }
 
 // ── Cohort view ──────────────────────────────────────────────
-function renderCohortView() {
-  const students = Object.entries(state.students);
-  if (!students.length) return;
-  const tests   = getTests();
-  const cStats  = cohortStats();
-  const classes = [...new Set(students.map(([,s])=>s.class).filter(Boolean))].sort();
-
-  const bandCount = {};
-  tests.forEach(t => {
-    bandCount[t.name] = [0,0,0,0,0,0];
-    students.forEach(([,s]) => {
-      const b = getBand(s.scores[t.name], cStats[t.name]);
-      if (b === null) bandCount[t.name][5]++;
-      else bandCount[t.name][b]++;
+function renderCohortView(){
+  const students=Object.entries(state.students);if(!students.length)return;
+  const tests=getTests(),cStats=cohortStats();
+  const classes=[...new Set(students.map(([,s])=>s.class).filter(Boolean))].sort();
+  const bandColors=['var(--r1-bg)','var(--r2-bg)','var(--r3-bg)','var(--r4-bg)','var(--r5-bg)','#ccc'];
+  const bandCount={};
+  tests.forEach(t=>{
+    bandCount[t.name]=[0,0,0,0,0,0];
+    students.forEach(([,s])=>{
+      const b=getBand(s.scores[t.name],cStats[t.name]);
+      if(b===null)bandCount[t.name][5]++;else bandCount[t.name][b]++;
     });
   });
+  const items=[{val:students.length,lbl:'Total students'}];
+  if(useClasses())items.push({val:classes.length,lbl:'Classes'});
+  tests.forEach(t=>items.push({val:cStats[t.name].n,lbl:`${t.name} assessed`}));
 
-  const classSummary = classes.map(cls => {
-    const cl = students.filter(([,s])=>s.class===cls);
-    const row = { class:cls, n:cl.length };
-    tests.forEach(t => {
-      const scores = cl.map(([,s])=>s.scores[t.name]).filter(v=>v!=null);
-      row[t.name+'_mean'] = scores.length ? (scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1) : '—';
-    });
-    return row;
-  });
-
-  document.getElementById('cohort-view-content').innerHTML = `
+  let html=`
     <div class="stats-row">
-      ${[{val:students.length,lbl:'Total students'},{val:classes.length,lbl:'Classes'},
-         ...tests.map(t=>({val:cStats[t.name].n,lbl:`${t.name} assessed`}))
-        ].map(s=>`<div class="stat-box"><div class="val">${s.val}</div><div class="lbl">${s.lbl}</div></div>`).join('')}
+      ${items.map(s=>`<div class="stat-box"><div class="val">${s.val}</div><div class="lbl">${s.lbl}</div></div>`).join('')}
     </div>
-
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:20px">
-      ${tests.map(t => {
-        const st = cStats[t.name];
-        const bc = bandCount[t.name];
-        const total = students.length;
-        const bandColors = ['var(--r1-bg)','var(--r2-bg)','var(--r3-bg)','var(--r4-bg)','var(--r5-bg)','#ccc'];
-        return `<div class="card" style="margin:0">
+      ${tests.map(t=>{
+        const st=cStats[t.name],bc=bandCount[t.name],total=students.length;
+        return`<div class="card" style="margin:0">
           <div class="card-title" style="margin-bottom:12px">${t.name}</div>
-          ${st.mean != null ? `
+          ${st.mean!=null?`
             <div style="display:flex;gap:16px;margin-bottom:12px">
               <div><div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--accent)">${st.mean.toFixed(1)}</div><div style="font-size:.7rem;color:var(--muted)">Mean</div></div>
               <div><div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--accent)">${st.sd.toFixed(2)}</div><div style="font-size:.7rem;color:var(--muted)">SD</div></div>
               <div><div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--accent)">${st.n}</div><div style="font-size:.7rem;color:var(--muted)">Assessed</div></div>
             </div>
             <div style="display:flex;height:10px;border-radius:5px;overflow:hidden;margin-bottom:8px">
-              ${[...bc].map((n,i)=>{
-                const pct=(n/total*100).toFixed(1);
-                return pct>0?`<div style="width:${pct}%;background:${bandColors[i]}" title="${i<5?BAND_LABELS[i]:'Not assessed'}: ${n}"></div>`:'';
-              }).join('')}
+              ${[...bc].map((n,i)=>{const p=(n/total*100).toFixed(1);return p>0?`<div style="width:${p}%;background:${bandColors[i]}" title="${i<5?BAND_LABELS[i]:'Not assessed'}: ${n}"></div>`:''}).join('')}
             </div>
             <div style="display:flex;gap:6px;flex-wrap:wrap">
-              ${BAND_LABELS.map((lbl,i)=>
-                `<span style="font-size:.7rem">${bandChip(i,false)} ${bc[i]}</span>`).join('')}
+              ${BAND_LABELS.map((l,i)=>`<span style="font-size:.7rem">${bandChip(i,false)} ${bc[i]}</span>`).join('')}
               ${bc[5]>0?`<span style="font-size:.7rem">${bandChip(null,false)} ${bc[5]}</span>`:''}
-            </div>` : `<p style="color:var(--muted);font-size:.85rem">No data loaded</p>`}
+            </div>`:`<p style="color:var(--muted);font-size:.85rem">No data loaded</p>`}
         </div>`;
       }).join('')}
-    </div>
-
-    <div class="card">
-      <div class="card-title">Class Comparison</div>
-      <div class="table-wrap"><table>
-        <thead><tr>
-          <th>Class</th><th>n</th><th>High Priority</th>
-          ${tests.map(t=>`<th>${t.name} Mean</th><th>${t.name} Well Below</th>`).join('')}
-        </tr></thead>
-        <tbody>
-          ${classSummary.map(r=>`<tr>
-            <td><strong>${r.class}</strong></td>
-            <td style="text-align:center">${r.n}</td>
-            <td style="text-align:center">${(()=>{
-              const hp = Object.keys(state.students).filter(e=>state.students[e].class===r.class&&getPriority(e,cStats)==='high').length;
-              return hp>0?`<span class="chip chip-r1">${hp}</span>`:'<span style="color:var(--muted)">0</span>';
-            })()}</td>
-            ${tests.map(t=>{
-              const wb = Object.values(state.students).filter(s=>s.class===r.class&&getBand(s.scores[t.name],cStats[t.name])===0).length;
-              return `<td style="text-align:center;font-family:'DM Mono',monospace">${r[t.name+'_mean']}</td>
-                      <td style="text-align:center">${wb>0?`<span class="chip chip-r1">${wb}</span>`:'<span style="color:var(--muted)">0</span>'}</td>`;
-            }).join('')}
-          </tr>`).join('')}
-        </tbody>
-      </table></div>
     </div>`;
+
+  if(useClasses()&&classes.length>0){
+    const summary=classes.map(cls=>{
+      const cl=students.filter(([,s])=>s.class===cls);const row={class:cls,n:cl.length};
+      tests.forEach(t=>{
+        const sc=cl.map(([,s])=>s.scores[t.name]).filter(v=>v!=null);
+        row[t.name+'_mean']=sc.length?(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(1):'—';
+      });
+      return row;
+    });
+    html+=`
+      <div class="card">
+        <div class="card-title">Class Comparison</div>
+        <div class="table-wrap"><table>
+          <thead><tr>
+            <th>Class</th><th>n</th><th>High Priority</th>
+            ${tests.map(t=>`<th>${t.name} Mean</th><th>${t.name} Well Below</th>`).join('')}
+          </tr></thead>
+          <tbody>
+            ${summary.map(r=>`<tr>
+              <td><strong>${r.class}</strong></td>
+              <td style="text-align:center">${r.n}</td>
+              <td style="text-align:center">${(()=>{
+                const hp=Object.keys(state.students).filter(e=>state.students[e].class===r.class&&getPriority(e,cStats)==='high').length;
+                return hp>0?`<span class="chip chip-r1">${hp}</span>`:'<span style="color:var(--muted)">0</span>';
+              })()}</td>
+              ${tests.map(t=>{
+                const wb=Object.values(state.students).filter(s=>s.class===r.class&&getBand(s.scores[t.name],cStats[t.name])===0).length;
+                return`<td style="text-align:center;font-family:'DM Mono',monospace">${r[t.name+'_mean']}</td>
+                       <td style="text-align:center">${wb>0?`<span class="chip chip-r1">${wb}</span>`:'<span style="color:var(--muted)">0</span>'}</td>`;
+              }).join('')}
+            </tr>`).join('')}
+          </tbody>
+        </table></div>
+      </div>`;
+  }
+  document.getElementById('cohort-view-content').innerHTML=html;
 }
 
 // ── Student profile ──────────────────────────────────────────
-function showProfile(email) {
-  const s = state.students[email];
-  if (!s) return;
-  const tests   = getTests();
-  const cStats  = cohortStats();
-  const clStats = s.class ? classStats(s.class) : cStats;
-
-  document.getElementById('profile-name').textContent = s.name || email;
-  document.getElementById('profile-content').innerHTML = `
-    <p style="color:var(--muted);font-size:.82rem;margin-bottom:16px">${email} · ${s.class||'No class'}</p>
+function showProfile(email){
+  const s=state.students[email];if(!s)return;
+  const tests=getTests(),cStats=cohortStats();
+  const clStats=(useClasses()&&s.class)?classStatsFor(s.class):cStats;
+  document.getElementById('profile-name').textContent=s.name||email;
+  document.getElementById('profile-content').innerHTML=`
+    <p style="color:var(--muted);font-size:.82rem;margin-bottom:16px">
+      ${email}${useClasses()&&s.class?' · '+s.class:''}
+    </p>
     <div class="profile-grid">
-      ${tests.map(t => {
-        const score      = s.scores[t.name];
-        const cohortBand = getBand(score, cStats[t.name]);
-        const clsBand    = getBand(score, clStats[t.name]);
-        const st         = cStats[t.name];
-        const z          = (score!=null && st.sd && st.sd>0) ? (score-st.mean)/st.sd : null;
-        return `<div class="profile-test-card">
+      ${tests.map(t=>{
+        const score=s.scores[t.name];
+        const cb=getBand(score,cStats[t.name]),clb=getBand(score,clStats[t.name]);
+        const st=cStats[t.name];
+        const z=(score!=null&&st.sd&&st.sd>0)?(score-st.mean)/st.sd:null;
+        return`<div class="profile-test-card">
           <h4>${t.name}</h4>
-          ${score != null
-            ? `<div class="score-big">${score}</div><div class="score-sub">out of ${t.max}</div>`
-            : `<div class="score-big" style="color:var(--muted)">—</div><div class="score-sub">Not assessed</div>`}
+          ${score!=null
+            ?`<div class="score-big">${score}</div><div class="score-sub">out of ${t.max}</div>`
+            :`<div class="score-big" style="color:var(--muted)">—</div><div class="score-sub">Not assessed</div>`}
           <div style="margin:8px 0">
             <div style="font-size:.68rem;color:var(--muted);margin-bottom:3px">Cohort</div>
-            ${bandChip(cohortBand, false)}
-            ${s.class ? `<div style="font-size:.68rem;color:var(--muted);margin-top:6px;margin-bottom:3px">In ${s.class}</div>${bandChip(clsBand, true)}` : ''}
+            ${bandChip(cb,false)}
+            ${useClasses()&&s.class?`
+              <div style="font-size:.68rem;color:var(--muted);margin-top:6px;margin-bottom:3px">In ${s.class}</div>
+              ${bandChip(clb,true)}`:''}
           </div>
-          ${z!=null&&st.mean!=null ? `<div style="margin-top:8px">${sdBar(z)}<div style="font-size:.66rem;color:var(--muted);margin-top:3px">Cohort mean ${st.mean.toFixed(1)}, SD ${st.sd.toFixed(2)}</div></div>` : ''}
+          ${z!=null&&st.mean!=null?`<div style="margin-top:8px">${sdBar(z)}<div style="font-size:.66rem;color:var(--muted);margin-top:3px">Cohort mean ${st.mean.toFixed(1)}, SD ${st.sd.toFixed(2)}</div></div>`:''}
         </div>`;
       }).join('')}
     </div>
     <div style="margin-top:14px;padding:12px 16px;background:var(--bg);border-radius:8px">
-      <strong>Overall: </strong>${priHtml(getPriority(email, cStats))}
+      <strong>Overall: </strong>${priHtml(getPriority(email,cStats))}
     </div>`;
-
   document.getElementById('profile-modal').classList.add('open');
 }
-
-function closeProfileModal() { document.getElementById('profile-modal').classList.remove('open'); }
+function closeProfileModal(){document.getElementById('profile-modal').classList.remove('open');}
 
 // ── Settings ─────────────────────────────────────────────────
-function renderSettings() {
-  const tests = getTests();
-  document.getElementById('test-config-list').innerHTML = tests.map((t,i) => `
-    <div class="test-config-row" id="test-row-${i}">
-      <input type="text" value="${t.name}" placeholder="Test name" id="tname-${i}" style="flex:2;min-width:0">
-      <input type="number" value="${t.max}" placeholder="Max" id="tmax-${i}" class="max-input" min="1">
-      <label style="margin:0;font-size:.72rem;color:var(--muted);white-space:nowrap">Max score</label>
-      ${tests.length > 1 ? `<button class="btn btn-danger btn-sm" onclick="removeTest(${i})">✕</button>` : ''}
-    </div>`).join('');
-  document.getElementById('sd-inner').value = state.settings.sd.inner;
-  document.getElementById('sd-outer').value = state.settings.sd.outer;
+function renderSettings(){
+  document.getElementById('sd-inner').value=state.settings.sd.inner;
+  document.getElementById('sd-outer').value=state.settings.sd.outer;
 }
-
-function addTest() {
-  const tests = getTests();
-  tests.push({ name: `Test ${tests.length+1}`, max: 10 });
-  state.settings.tests = tests;
-  saveState(); renderSettings(); renderUploadZones();
-}
-
-function removeTest(idx) {
-  const tests = getTests();
-  if (tests.length <= 1) { toast('You need at least one test'); return; }
-  if (!confirm(`Remove "${tests[idx].name}"? This also removes all scores for this test.`)) return;
-  const name = tests[idx].name;
-  tests.splice(idx, 1);
-  state.settings.tests = tests;
-  Object.values(state.students).forEach(s => delete s.scores[name]);
-  saveState(); renderSettings(); renderUploadZones(); renderDataSummary();
-  toast(`Removed ${name}`);
-}
-
-function saveTestConfig() {
-  const tests = getTests();
-  const newTests = tests.map((t,i) => {
-    const newName = document.getElementById(`tname-${i}`)?.value.trim();
-    const newMax  = parseFloat(document.getElementById(`tmax-${i}`)?.value);
-    if (!newName) return t;
-    if (newName !== t.name) {
-      Object.values(state.students).forEach(s => {
-        if (s.scores[t.name] != null) { s.scores[newName] = s.scores[t.name]; delete s.scores[t.name]; }
-      });
-    }
-    return { name: newName, max: isNaN(newMax) ? t.max : newMax };
-  });
-  state.settings.tests = newTests;
-  saveState(); renderSettings(); renderUploadZones(); renderDataSummary();
-  toast('Tests saved');
-}
-
-function saveSDSettings() {
-  const inner = parseFloat(document.getElementById('sd-inner').value);
-  const outer = parseFloat(document.getElementById('sd-outer').value);
-  if (isNaN(inner) || isNaN(outer) || inner <= 0 || outer <= inner) {
-    toast('Outer threshold must be greater than inner'); return;
-  }
-  state.settings.sd = { inner, outer };
-  saveState(); toast('Thresholds saved');
+function saveSDSettings(){
+  const inner=parseFloat(document.getElementById('sd-inner').value);
+  const outer=parseFloat(document.getElementById('sd-outer').value);
+  if(isNaN(inner)||isNaN(outer)||inner<=0||outer<=inner){toast('Outer must be greater than inner');return;}
+  state.settings.sd={inner,outer};saveState();toast('Thresholds saved');
 }
 
 // ── Export / Clear ────────────────────────────────────────────
-function exportData() {
-  const tests  = getTests();
-  const cStats = cohortStats();
-  const header = ['Email','Name','Class',
-    ...tests.flatMap(t => [t.name+' Score', t.name+' Cohort Band']),
-    'SD Avg','Priority'
-  ];
-  const rows = [header];
-  Object.entries(state.students).forEach(([email,s]) => {
-    const sdAvg = getSDScore(email, cStats);
-    rows.push([
-      email, s.name, s.class,
-      ...tests.flatMap(t => {
-        const b = getBand(s.scores[t.name], cStats[t.name]);
-        return [s.scores[t.name]??'', b!==null ? BAND_LABELS[b] : 'Not assessed'];
-      }),
-      sdAvg!=null ? sdAvg.toFixed(3) : '',
-      getPriority(email, cStats),
-    ]);
+function exportData(){
+  const tests=getTests(),cStats=cohortStats();
+  const header=['Email','Name'];if(useClasses())header.push('Class');
+  tests.forEach(t=>{header.push(t.name+' Score',t.name+' Cohort Band');});
+  header.push('SD Avg','Priority');
+  const rows=[header];
+  Object.entries(state.students).forEach(([email,s])=>{
+    const sdAvg=getSDScore(email,cStats);const row=[email,s.name];
+    if(useClasses())row.push(s.class);
+    tests.forEach(t=>{
+      const b=getBand(s.scores[t.name],cStats[t.name]);
+      row.push(s.scores[t.name]??'',b!==null?BAND_LABELS[b]:'Not assessed');
+    });
+    row.push(sdAvg!=null?sdAvg.toFixed(3):'',getPriority(email,cStats));rows.push(row);
   });
-  const csv = rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
-  const a = document.createElement('a');
-  a.href = 'data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
-  a.download = 'pretest_export.csv'; a.click();
-  toast('Exported');
+  const csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='pretest_export.csv';a.click();toast('Exported');
 }
 
-function clearAllData() {
-  if (!confirm('Clear ALL student data? This cannot be undone.')) return;
-  state.students = {}; saveState();
-  renderUploadZones(); renderDataSummary();
-  document.getElementById('class-view-content').innerHTML  = '<div class="empty"><div class="icon">📊</div><p>Load data first.</p></div>';
-  document.getElementById('cohort-view-content').innerHTML = '<div class="empty"><div class="icon">🌐</div><p>Load data first.</p></div>';
-  const rz=document.getElementById('zone-roll'), rs=document.getElementById('status-roll');
-  if(rz){rz.style.borderColor='';rz.style.background='';}
-  if(rs)rs.innerHTML='';
+function clearAllData(){
+  if(!confirm('Clear ALL data including setup? This cannot be undone.'))return;
+  state={students:{},settings:JSON.parse(JSON.stringify(DEFAULT_SETTINGS))};
+  saveState();renderSetupUI();renderUploadZones();renderDataSummary();
+  document.getElementById('class-view-content').innerHTML='<div class="empty"><div class="icon">📊</div><p>Load data first.</p></div>';
+  document.getElementById('cohort-view-content').innerHTML='<div class="empty"><div class="icon">🌐</div><p>Load data first.</p></div>';
+  const rz=document.getElementById('zone-roll'),rs=document.getElementById('status-roll');
+  if(rz){rz.style.borderColor='';rz.style.background='';}if(rs)rs.innerHTML='';
   toast('All data cleared');
 }
 
-// ── Toast ─────────────────────────────────────────────────────
-function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg; el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'), 2800);
+// ── Toast / Init ─────────────────────────────────────────────
+function toast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2800);
 }
 
-// ── Init ──────────────────────────────────────────────────────
 updateHeaderSub();
+renderSetupUI();
 renderUploadZones();
 updateClassFilter();
 renderDataSummary();
 
-const rollCount = Object.values(state.students).filter(s=>s.fromRoll).length;
-if (rollCount > 0) {
-  const rz=document.getElementById('zone-roll'), rs=document.getElementById('status-roll');
+const rollCount=Object.values(state.students).filter(s=>s.fromRoll).length;
+if(rollCount>0){
+  const rz=document.getElementById('zone-roll'),rs=document.getElementById('status-roll');
   if(rz){rz.style.borderColor='var(--accent)';rz.style.background='#EEF3F0';}
   if(rs)rs.innerHTML=`<div style="margin-top:6px;color:var(--accent);font-size:.73rem;font-weight:600">✓ ${rollCount} students on roll</div>`;
 }

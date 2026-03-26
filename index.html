@@ -7,286 +7,135 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:       #F7F5F0;
-    --surface:  #FFFFFF;
-    --border:   #E2DDD6;
-    --text:     #1A1714;
-    --muted:    #7A746C;
-    --accent:   #2B4D3F;
-    --accent2:  #C17F3B;
+    --bg:      #F7F5F0;
+    --surface: #FFFFFF;
+    --border:  #E2DDD6;
+    --text:    #1A1714;
+    --muted:   #7A746C;
+    --accent:  #2B4D3F;
     --r1-bg: #4A0A0A; --r1-fg: #FFD5D5;
     --r2-bg: #C0392B; --r2-fg: #FFE8E8;
-    --r3-bg: #D35400; --r3-fg: #FEF0E7;
+    --r3-bg: #8A6800; --r3-fg: #FFF6D0;
     --r4-bg: #27AE60; --r4-fg: #E8F8EF;
-    --r5-bg: #1A7A6E; --r5-fg: #E0F5F3;
-    --r6-bg: #0D4F47; --r6-fg: #C8EDE9;
-    --abs-red: #C0392B; --abs-red-bg: #FDEDEC;
-    --abs-amber: #D35400; --abs-amber-bg: #FEF0E7;
-    --abs-green: #27AE60; --abs-green-bg: #E9F7EF;
+    --r5-bg: #0D4F47; --r5-fg: #C8EDE9;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 14px;
-  }
-
-  /* ── Header ── */
   header {
-    background: var(--accent);
-    color: #fff;
-    padding: 18px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    background: var(--accent); color: #fff;
+    padding: 18px 32px; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.15);
   }
-  header h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.35rem;
-    font-weight: 400;
-    letter-spacing: .01em;
-  }
+  header h1 { font-family: 'DM Serif Display', serif; font-size: 1.35rem; font-weight: 400; }
   header .sub { font-size: .75rem; opacity: .7; margin-top: 2px; font-family: 'DM Mono', monospace; }
-  .header-actions { display: flex; gap: 10px; align-items: center; }
+  .header-actions { display: flex; gap: 10px; }
 
-  /* ── Nav tabs ── */
   nav {
-    background: var(--surface);
-    border-bottom: 2px solid var(--border);
-    display: flex;
-    gap: 0;
-    padding: 0 32px;
-    overflow-x: auto;
+    background: var(--surface); border-bottom: 2px solid var(--border);
+    display: flex; padding: 0 32px; overflow-x: auto;
   }
   nav button {
     background: none; border: none; cursor: pointer;
-    padding: 14px 20px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: .85rem; font-weight: 500;
-    color: var(--muted);
-    border-bottom: 3px solid transparent;
-    margin-bottom: -2px;
-    white-space: nowrap;
-    transition: color .15s, border-color .15s;
+    padding: 14px 20px; font-family: 'DM Sans', sans-serif;
+    font-size: .85rem; font-weight: 500; color: var(--muted);
+    border-bottom: 3px solid transparent; margin-bottom: -2px;
+    white-space: nowrap; transition: color .15s, border-color .15s;
   }
   nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
   nav button:hover:not(.active) { color: var(--text); }
 
-  /* ── Layout ── */
-  main { padding: 28px 32px; max-width: 1600px; }
+  main { padding: 28px 32px; max-width: 1700px; }
   .page { display: none; }
   .page.active { display: block; }
 
-  /* ── Cards ── */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px;
-    margin-bottom: 20px;
-  }
-  .card-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.1rem;
-    color: var(--accent);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .card-title .badge {
-    font-family: 'DM Mono', monospace;
-    font-size: .65rem;
-    background: var(--accent);
-    color: #fff;
-    padding: 2px 8px;
-    border-radius: 20px;
-    font-weight: 500;
-  }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 20px; }
+  .card-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .badge { font-family: 'DM Mono', monospace; font-size: .65rem; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 20px; }
 
-  /* ── Buttons ── */
-  .btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 8px 16px; border-radius: 6px; border: none;
-    font-family: 'DM Sans', sans-serif; font-size: .82rem; font-weight: 500;
-    cursor: pointer; transition: all .15s;
-  }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 6px; border: none; font-family: 'DM Sans', sans-serif; font-size: .82rem; font-weight: 500; cursor: pointer; transition: all .15s; }
   .btn-primary { background: var(--accent); color: #fff; }
   .btn-primary:hover { background: #1e3a2f; }
   .btn-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
   .btn-secondary:hover { background: var(--border); }
-  .btn-accent { background: var(--accent2); color: #fff; }
-  .btn-accent:hover { background: #a06830; }
-  .btn-sm { padding: 5px 10px; font-size: .75rem; }
   .btn-danger { background: #c0392b; color: #fff; }
   .btn-danger:hover { background: #922b21; }
+  .btn-sm { padding: 5px 10px; font-size: .75rem; }
 
-  /* ── Form elements ── */
   label { display: block; font-size: .8rem; font-weight: 500; color: var(--muted); margin-bottom: 5px; }
-  input, select, textarea {
-    width: 100%; padding: 9px 12px;
-    border: 1px solid var(--border); border-radius: 6px;
-    font-family: 'DM Sans', sans-serif; font-size: .85rem;
-    background: var(--bg); color: var(--text);
-    transition: border-color .15s;
-  }
-  input:focus, select:focus, textarea:focus {
-    outline: none; border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(43,77,63,.1);
-  }
-  .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 14px; }
+  input, select, textarea { width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: .85rem; background: var(--bg); color: var(--text); transition: border-color .15s; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(43,77,63,.1); }
+  .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 14px; }
 
-  /* ── Tables ── */
   .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
   table { width: 100%; border-collapse: collapse; font-size: .8rem; }
-  thead th {
-    background: var(--accent); color: #fff;
-    padding: 10px 12px; text-align: left;
-    font-weight: 500; font-size: .75rem; letter-spacing: .04em;
-    white-space: nowrap; position: sticky; top: 0;
-  }
-  thead th.sortable { cursor: pointer; user-select: none; }
-  thead th.sortable:hover { background: #1e3a2f; }
+  thead th { background: var(--accent); color: #fff; padding: 10px 12px; text-align: left; font-weight: 500; font-size: .73rem; letter-spacing: .04em; white-space: nowrap; }
   tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
   tbody tr:last-child { border-bottom: none; }
   tbody tr:hover { background: #F0EDE8; }
-  td { padding: 9px 12px; vertical-align: middle; }
-  td.mono { font-family: 'DM Mono', monospace; font-size: .75rem; }
+  td { padding: 8px 12px; vertical-align: middle; }
+  td.mono { font-family: 'DM Mono', monospace; font-size: .73rem; }
 
-  /* ── Band chips ── */
-  .chip {
-    display: inline-block; padding: 3px 9px; border-radius: 20px;
-    font-size: .7rem; font-weight: 600; white-space: nowrap;
-  }
-  .chip-red    { background: var(--abs-red-bg);   color: var(--abs-red);   }
-  .chip-amber  { background: var(--abs-amber-bg); color: var(--abs-amber); }
-  .chip-green  { background: var(--abs-green-bg); color: var(--abs-green); }
-  .chip-grey   { background: #F0EDE8; color: var(--muted); }
-
+  .chip { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: .68rem; font-weight: 600; white-space: nowrap; }
   .chip-r1 { background: var(--r1-bg); color: var(--r1-fg); }
   .chip-r2 { background: var(--r2-bg); color: var(--r2-fg); }
   .chip-r3 { background: var(--r3-bg); color: var(--r3-fg); }
   .chip-r4 { background: var(--r4-bg); color: var(--r4-fg); }
   .chip-r5 { background: var(--r5-bg); color: var(--r5-fg); }
-  .chip-r6 { background: var(--r6-bg); color: var(--r6-fg); }
+  .chip-grey { background: #EEEAE4; color: var(--muted); }
 
-  /* ── Priority chip ── */
-  .pri-high { color: var(--abs-red); font-weight: 600; }
-  .pri-some { color: var(--abs-amber); font-weight: 600; }
-  .pri-ok   { color: var(--abs-green); font-weight: 600; }
+  .pri-high { color: #C0392B; font-weight: 600; }
+  .pri-some { color: #8A6800; font-weight: 600; }
+  .pri-ok   { color: #27AE60; font-weight: 600; }
   .pri-inc  { color: var(--muted); font-style: italic; }
 
-  /* ── SD bar ── */
-  .sd-bar-wrap { display: flex; align-items: center; gap: 6px; min-width: 120px; }
-  .sd-bar-track {
-    flex: 1; height: 6px; background: var(--border); border-radius: 3px; position: relative; overflow: visible;
-  }
-  .sd-bar-fill {
-    position: absolute; top: 0; height: 6px; border-radius: 3px;
-  }
-  .sd-val { font-family: 'DM Mono', monospace; font-size: .7rem; color: var(--muted); min-width: 44px; text-align: right; }
+  .sd-bar-wrap { display: flex; align-items: center; gap: 6px; min-width: 110px; }
+  .sd-bar-track { flex: 1; height: 6px; background: var(--border); border-radius: 3px; position: relative; }
+  .sd-bar-fill  { position: absolute; top: 0; height: 6px; border-radius: 3px; }
+  .sd-val { font-family: 'DM Mono', monospace; font-size: .68rem; color: var(--muted); min-width: 42px; text-align: right; }
 
-  /* ── Upload area ── */
-  .upload-zone {
-    border: 2px dashed var(--border); border-radius: 10px;
-    padding: 32px; text-align: center; cursor: pointer;
-    transition: all .2s; background: var(--bg);
-  }
+  .upload-zone { border: 2px dashed var(--border); border-radius: 10px; padding: 28px 20px; text-align: center; cursor: pointer; transition: all .2s; background: var(--bg); }
   .upload-zone:hover, .upload-zone.drag { border-color: var(--accent); background: #EEF3F0; }
-  .upload-zone .icon { font-size: 2rem; margin-bottom: 8px; }
-  .upload-zone p { color: var(--muted); font-size: .85rem; }
+  .upload-zone .icon { font-size: 1.8rem; margin-bottom: 6px; }
+  .upload-zone p { color: var(--muted); font-size: .82rem; }
   .upload-zone strong { color: var(--accent); }
 
-  /* ── Mapping UI ── */
-  .mapping-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .map-row { display: flex; align-items: center; gap: 10px; }
-  .map-label { font-size: .8rem; font-weight: 500; min-width: 100px; }
+  .map-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+  .map-label { font-size: .8rem; font-weight: 500; min-width: 130px; padding-top: 10px; }
 
-  /* ── Settings panels ── */
-  .settings-section { margin-bottom: 24px; }
-  .settings-section h3 { font-size: .85rem; font-weight: 600; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 12px; }
-  .settings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-  .setting-item { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
-  .setting-item label { margin-bottom: 6px; }
-
-  /* ── Stats row ── */
   .stats-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
-  .stat-box {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    padding: 14px 20px; min-width: 120px; flex: 1;
-  }
+  .stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 20px; min-width: 110px; flex: 1; }
   .stat-box .val { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--accent); }
   .stat-box .lbl { font-size: .72rem; color: var(--muted); margin-top: 2px; }
 
-  /* ── Modal ── */
-  .modal-bg {
-    display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,.4); z-index: 200;
-    align-items: center; justify-content: center;
-  }
+  .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 200; align-items: center; justify-content: center; }
   .modal-bg.open { display: flex; }
-  .modal {
-    background: var(--surface); border-radius: 12px;
-    padding: 28px; max-width: 560px; width: 90%;
-    max-height: 85vh; overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0,0,0,.2);
-  }
+  .modal { background: var(--surface); border-radius: 12px; padding: 28px; max-width: 580px; width: 90%; max-height: 88vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.2); }
   .modal h2 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin-bottom: 16px; color: var(--accent); }
   .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
 
-  /* ── Legend ── */
-  .legend { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
-  .legend-label { font-size: .72rem; color: var(--muted); margin-right: 4px; }
+  .legend { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+  .legend-label { font-size: .72rem; color: var(--muted); margin-right: 2px; }
 
-  /* ── Filter bar ── */
-  .filter-bar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
-  .filter-bar select, .filter-bar input { width: auto; min-width: 160px; }
+  .filter-bar { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 16px; }
+  .filter-bar select, .filter-bar input { width: auto; min-width: 150px; }
 
-  /* ── Empty state ── */
-  .empty {
-    text-align: center; padding: 60px 20px; color: var(--muted);
-  }
+  .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
   .empty .icon { font-size: 2.5rem; margin-bottom: 12px; }
-  .empty p { font-size: .9rem; }
 
-  /* ── Toast ── */
-  #toast {
-    position: fixed; bottom: 24px; right: 24px;
-    background: var(--accent); color: #fff;
-    padding: 12px 20px; border-radius: 8px;
-    font-size: .85rem; z-index: 300;
-    transform: translateY(80px); opacity: 0;
-    transition: all .3s;
-    pointer-events: none;
-  }
+  #toast { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: #fff; padding: 12px 20px; border-radius: 8px; font-size: .85rem; z-index: 300; transform: translateY(80px); opacity: 0; transition: all .3s; pointer-events: none; }
   #toast.show { transform: translateY(0); opacity: 1; }
 
-  /* ── Profile card ── */
-  .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-  .profile-test-card {
-    border: 1px solid var(--border); border-radius: 10px; padding: 18px;
-    position: relative; overflow: hidden;
-  }
-  .profile-test-card h4 { font-size: .95rem; font-weight: 600; margin-bottom: 12px; }
-  .profile-test-card .score-big {
-    font-family: 'DM Serif Display', serif; font-size: 2.4rem; color: var(--accent); line-height: 1;
-  }
-  .profile-test-card .score-sub { font-size: .75rem; color: var(--muted); margin-bottom: 12px; }
-  .profile-test-card .strategy {
-    font-size: .78rem; color: var(--muted); background: var(--bg);
-    border-radius: 6px; padding: 8px 10px; margin-top: 10px; line-height: 1.5;
-  }
-  .cohort-mini { display: flex; gap: 6px; align-items: center; margin-top: 8px; }
-  .cohort-mini .lbl { font-size: .72rem; color: var(--muted); }
+  .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .profile-test-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .profile-test-card h4 { font-size: .9rem; font-weight: 600; margin-bottom: 10px; }
+  .score-big { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--accent); line-height: 1; }
+  .score-sub { font-size: .72rem; color: var(--muted); margin-bottom: 10px; }
 
-  /* ── Scrollbar ── */
+  .test-config-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; padding: 10px 12px; background: var(--bg); border-radius: 8px; border: 1px solid var(--border); }
+  .test-config-row input { flex: 1; }
+  .max-input { max-width: 80px; }
+
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -319,22 +168,19 @@
 
 <main>
 
-<!-- ════════════════ DATA PAGE ════════════════ -->
+<!-- DATA PAGE -->
 <div class="page active" id="page-data">
-
   <div class="card">
     <div class="card-title">Master Student Roll <span class="badge">Step 1 — Required</span></div>
     <p style="color:var(--muted);font-size:.85rem;margin-bottom:14px;">
-      Upload your school roll first. This is the source of truth for student names and classes.
-      Every student on the roll will appear in dashboards even if they missed all tests.
-      Names and classes from this file always take priority over anything in test CSVs.
+      Upload your school roll first. Every student on the roll appears in all dashboards even if they missed every test.
+      Names and classes from this file always override anything in test CSVs.
     </p>
-    <div id="zone-roll" class="upload-zone" style="max-width:420px"
-         onclick="triggerRollUpload()"
-         ondragover="dragOver(event)" ondrop="dropRollFile(event)">
+    <div id="zone-roll" class="upload-zone" style="max-width:400px"
+         onclick="triggerRollUpload()" ondragover="dragOver(event)" ondrop="dropRollFile(event)">
       <div class="icon">📋</div>
       <p><strong>Student Roll</strong><br>Drop CSV or click to upload<br>
-      <span style="font-size:.72rem;color:var(--muted)">Needs: first name, last name, email, class columns</span></p>
+      <span style="font-size:.7rem">Needs: first name, last name, email, class</span></p>
       <div id="status-roll"></div>
     </div>
     <input type="file" id="roll-file-input" accept=".csv" style="display:none" onchange="handleRollFileInput(event)">
@@ -342,44 +188,20 @@
 
   <div class="card">
     <div class="card-title">Test Scores <span class="badge">Step 2</span></div>
-    <p style="color:var(--muted);font-size:.85rem;margin-bottom:18px;">
-      Upload a CSV exported from Microsoft Forms for each test. You'll map the columns after uploading.
-      Students already on the roll will have their names and classes preserved.
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">
+      Upload one CSV per test. Configure test names and max scores in Settings first if needed.
     </p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
-      <div id="zone-Reading"     class="upload-zone" onclick="triggerUpload('Reading')"     ondragover="dragOver(event)" ondrop="dropFile(event,'Reading')">
-        <div class="icon">📖</div><p><strong>Reading</strong><br>Drop CSV or click to upload</p>
-        <div class="upload-status" id="status-Reading"></div>
-      </div>
-      <div id="zone-Spelling"    class="upload-zone" onclick="triggerUpload('Spelling')"    ondragover="dragOver(event)" ondrop="dropFile(event,'Spelling')">
-        <div class="icon">✏️</div><p><strong>Spelling</strong><br>Drop CSV or click to upload</p>
-        <div class="upload-status" id="status-Spelling"></div>
-      </div>
-      <div id="zone-Conventions" class="upload-zone" onclick="triggerUpload('Conventions')" ondragover="dragOver(event)" ondrop="dropFile(event,'Conventions')">
-        <div class="icon">📝</div><p><strong>Conventions</strong><br>Drop CSV or click to upload</p>
-        <div class="upload-status" id="status-Conventions"></div>
-      </div>
-      <div id="zone-Writing"     class="upload-zone" onclick="triggerUpload('Writing')"     ondragover="dragOver(event)" ondrop="dropFile(event,'Writing')">
-        <div class="icon">✍️</div><p><strong>Writing</strong><br>Drop CSV or click to upload</p>
-        <div class="upload-status" id="status-Writing"></div>
-      </div>
-    </div>
+    <div id="test-upload-zones" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;"></div>
     <input type="file" id="file-input" accept=".csv" style="display:none" onchange="handleFileInput(event)">
   </div>
 
   <div class="card">
     <div class="card-title">Manual Entry <span class="badge">Optional</span></div>
-    <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">Add or edit individual student results directly.</p>
     <div class="form-row">
-      <div><label>Email (Student ID)</label><input type="email" id="me-email" placeholder="student@school.edu"></div>
+      <div><label>Email</label><input type="email" id="me-email" placeholder="student@school.edu"></div>
       <div><label>Full Name</label><input type="text" id="me-name" placeholder="First Last"></div>
-      <div><label>Class</label><input type="text" id="me-class" placeholder="e.g. Year 4B"></div>
-      <div><label>Test</label>
-        <select id="me-test">
-          <option>Reading</option><option>Spelling</option>
-          <option>Conventions</option><option>Writing</option>
-        </select>
-      </div>
+      <div><label>Class</label><input type="text" id="me-class" placeholder="e.g. 7E"></div>
+      <div><label>Test</label><select id="me-test"></select></div>
       <div><label>Score</label><input type="number" id="me-score" placeholder="0" min="0"></div>
     </div>
     <button class="btn btn-primary" onclick="manualEntry()">+ Add / Update</button>
@@ -389,28 +211,18 @@
     <div class="card-title">Loaded Data Summary</div>
     <div class="stats-row" id="data-stats"></div>
     <div class="table-wrap">
-      <table id="data-table">
-        <thead><tr>
-          <th>Email</th><th>Name</th><th>Class</th>
-          <th>Reading</th><th>Spelling</th><th>Conventions</th><th>Writing</th>
-        </tr></thead>
-        <tbody id="data-tbody"></tbody>
-      </table>
+      <table><thead><tr id="data-thead"></tr></thead><tbody id="data-tbody"></tbody></table>
     </div>
   </div>
 </div>
 
-<!-- ════════════════ CLASS VIEW ════════════════ -->
+<!-- CLASS VIEW -->
 <div class="page" id="page-class">
   <div class="filter-bar">
-    <div>
-      <label style="margin-bottom:3px">Class</label>
-      <select id="class-filter" onchange="renderClassView()">
-        <option value="__all__">All Classes</option>
-      </select>
+    <div><label style="margin-bottom:3px">Class</label>
+      <select id="class-filter" onchange="renderClassView()"><option value="__all__">All Classes</option></select>
     </div>
-    <div>
-      <label style="margin-bottom:3px">Sort by</label>
+    <div><label style="margin-bottom:3px">Sort by</label>
       <select id="class-sort" onchange="renderClassView()">
         <option value="name">Name A→Z</option>
         <option value="sd_asc">SD Rank (most in need first)</option>
@@ -419,66 +231,56 @@
       </select>
     </div>
     <div style="align-self:flex-end">
-      <button class="btn btn-secondary btn-sm" onclick="showPage('settings')">⚙ Edit band settings</button>
+      <button class="btn btn-secondary btn-sm" onclick="showPage('settings')">⚙ Settings</button>
     </div>
   </div>
-
   <div class="legend">
-    <span class="legend-label">Absolute:</span>
-    <span class="chip chip-red">Needs Support</span>
-    <span class="chip chip-amber">Monitor</span>
-    <span class="chip chip-green">Extending</span>
-    <span class="chip chip-grey">Not Assessed</span>
-    <span style="margin-left:10px" class="legend-label">Relative (cohort):</span>
+    <span class="legend-label">Cohort band:</span>
     <span class="chip chip-r1">Well below</span>
     <span class="chip chip-r2">Below</span>
-    <span class="chip chip-r3">Slightly below</span>
-    <span class="chip chip-r4">Slightly above</span>
-    <span class="chip chip-r5">Above</span>
-    <span class="chip chip-r6">Well above</span>
+    <span class="chip chip-r3">Around avg</span>
+    <span class="chip chip-r4">Above</span>
+    <span class="chip chip-r5">Well above</span>
+    <span class="chip chip-grey">Not assessed</span>
+    <span style="margin-left:8px;font-size:.72rem;color:var(--muted)">Class band: outlined chip</span>
   </div>
-
   <div id="class-view-content">
     <div class="empty"><div class="icon">📊</div><p>Load data first to see the class view.</p></div>
   </div>
 </div>
 
-<!-- ════════════════ COHORT VIEW ════════════════ -->
+<!-- COHORT VIEW -->
 <div class="page" id="page-cohort">
   <div id="cohort-view-content">
     <div class="empty"><div class="icon">🌐</div><p>Load data first to see cohort statistics.</p></div>
   </div>
 </div>
 
-<!-- ════════════════ SETTINGS PAGE ════════════════ -->
+<!-- SETTINGS -->
 <div class="page" id="page-settings">
   <div class="card">
-    <div class="card-title">Band Configuration</div>
-    <p style="color:var(--muted);font-size:.85rem;margin-bottom:18px;">
-      Set the maximum score and cut-off points for each test. Band 1 = Needs Support, Band 2 = Monitor, above Band 2 = Extending.
+    <div class="card-title">Tests</div>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">
+      Add, remove, or rename tests. Max score is used for display only. You need at least one test.
     </p>
-    <div id="band-settings"></div>
-    <button class="btn btn-primary" onclick="saveBandSettings()">Save Settings</button>
+    <div id="test-config-list"></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-secondary" onclick="addTest()">+ Add Test</button>
+      <button class="btn btn-primary" onclick="saveTestConfig()">Save Tests</button>
+    </div>
   </div>
 
   <div class="card">
     <div class="card-title">Relative Band Thresholds</div>
     <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">
-      How many standard deviations from the cohort mean define each relative band. Default: 0.5 / 1.0 / 1.5 SD.
+      SD distance from the mean that defines band boundaries. Inner threshold separates
+      "Around average" from "Below/Above". Outer separates "Below/Above" from "Well below/above".
     </p>
-    <div class="form-row" style="max-width:500px">
-      <div><label>Lower threshold (SD)</label><input type="number" id="sd-lo" step="0.1" value="0.5"></div>
-      <div><label>Mid threshold (SD)</label><input type="number" id="sd-mid" step="0.1" value="1.0"></div>
-      <div><label>Upper threshold (SD)</label><input type="number" id="sd-hi" step="0.1" value="1.5"></div>
+    <div class="form-row" style="max-width:400px">
+      <div><label>Inner threshold (SD)</label><input type="number" id="sd-inner" step="0.1" value="0.5"></div>
+      <div><label>Outer threshold (SD)</label><input type="number" id="sd-outer" step="0.1" value="1.5"></div>
     </div>
     <button class="btn btn-primary" onclick="saveSDSettings()">Save Thresholds</button>
-  </div>
-
-  <div class="card">
-    <div class="card-title">Strategies</div>
-    <p style="color:var(--muted);font-size:.85rem;margin-bottom:16px;">Edit the suggested strategy for each test and band.</p>
-    <div id="strategy-settings"></div>
-    <button class="btn btn-primary" onclick="saveStrategies()">Save Strategies</button>
   </div>
 </div>
 
@@ -488,9 +290,7 @@
 <div class="modal-bg" id="roll-modal">
   <div class="modal">
     <h2>Map Roll Columns</h2>
-    <p style="color:var(--muted);font-size:.83rem;margin-bottom:16px;">
-      Match your CSV columns to the required fields. First name and last name are combined into a full name.
-    </p>
+    <p style="color:var(--muted);font-size:.83rem;margin-bottom:16px;">First and last name are combined into a full name.</p>
     <div id="roll-map-fields"></div>
     <div class="modal-actions">
       <button class="btn btn-secondary" onclick="closeRollModal()">Cancel</button>
@@ -499,16 +299,14 @@
   </div>
 </div>
 
-<!-- Column mapping modal -->
+<!-- Test CSV mapping modal -->
 <div class="modal-bg" id="map-modal">
   <div class="modal">
     <h2>Map Columns — <span id="map-test-name"></span></h2>
-    <p style="color:var(--muted);font-size:.83rem;margin-bottom:16px;">
-      Match your CSV columns to the required fields. Preview shows first few values.
-    </p>
+    <p style="color:var(--muted);font-size:.83rem;margin-bottom:16px;">Match your CSV columns to the required fields.</p>
     <div id="map-fields"></div>
     <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-secondary" onclick="closeMapModal()">Cancel</button>
       <button class="btn btn-primary" onclick="applyMapping()">Import Data</button>
     </div>
   </div>
@@ -516,7 +314,7 @@
 
 <!-- Student profile modal -->
 <div class="modal-bg" id="profile-modal">
-  <div class="modal" style="max-width:720px">
+  <div class="modal" style="max-width:700px">
     <h2 id="profile-name">Student Profile</h2>
     <div id="profile-content"></div>
     <div class="modal-actions">
@@ -528,60 +326,41 @@
 <div id="toast"></div>
 
 <script>
-// ════════════════════════════════════════════════════════════════
-// STATE
-// ════════════════════════════════════════════════════════════════
-const STORAGE_KEY = 'pretest_v1';
+const STORAGE_KEY = 'pretest_v2';
+
+const DEFAULT_TESTS = [
+  { name: 'Reading',     max: 25 },
+  { name: 'Spelling',    max: 10 },
+  { name: 'Conventions', max: 20 },
+  { name: 'Writing',     max: 10 },
+];
 
 const DEFAULT_SETTINGS = {
-  tests: {
-    Reading:     { max: 20, band1Max: 10, band2Max: 15 },
-    Spelling:    { max: 30, band1Max: 15, band2Max: 22 },
-    Conventions: { max: 25, band1Max: 12, band2Max: 19 },
-    Writing:     { max: 10, band1Max:  4, band2Max:  7 },
-  },
-  sd: { lo: 0.5, mid: 1.0, hi: 1.5 },
-  strategies: {
-    Reading: {
-      'Needs Support': 'Focus on decoding and phonemic awareness; use decodable texts and guided reading at instructional level.',
-      'Monitor':       'Consolidate fluency and comprehension strategies; monitor progress with regular checks.',
-      'Extending':     'Challenge with complex texts; focus on inferencing, critical analysis, and vocabulary extension.',
-    },
-    Spelling: {
-      'Needs Support': 'Explicitly teach phoneme-grapheme correspondence; structured word study and Look-Say-Cover-Write-Check.',
-      'Monitor':       'Reinforce common spelling patterns and high-frequency words; targeted word lists.',
-      'Extending':     'Explore morphology, etymology, and less common spelling generalisations.',
-    },
-    Conventions: {
-      'Needs Support': 'Explicitly teach sentence structure, punctuation basics, and grammar at word/phrase level.',
-      'Monitor':       'Consolidate sentence-level grammar; focus on consistent punctuation and subject-verb agreement.',
-      'Extending':     'Extend to complex sentences, cohesive devices, and editing for precision.',
-    },
-    Writing: {
-      'Needs Support': 'Focus on text structure, sentence construction, and word choice; use modelled and shared writing.',
-      'Monitor':       'Build independence in planning and drafting; target elaboration and cohesion.',
-      'Extending':     'Focus on craft: audience awareness, voice, stylistic choices, and precise language.',
-    },
-  }
+  tests: DEFAULT_TESTS,
+  sd: { inner: 0.5, outer: 1.5 },
 };
 
-let state = loadState();
+const BAND_LABELS  = ['Well below average','Below average','Around average','Above average','Well above average'];
+const BAND_CLASSES = ['chip-r1','chip-r2','chip-r3','chip-r4','chip-r5'];
 
-function loadState() {
+function defaultState() {
+  return { students: {}, settings: JSON.parse(JSON.stringify(DEFAULT_SETTINGS)) };
+}
+
+let state = (() => {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) return JSON.parse(raw);
   } catch(e) {}
-  return {
-    students: {},   // email → { name, class, scores: {Reading, Spelling, Conventions, Writing} }
-    settings: JSON.parse(JSON.stringify(DEFAULT_SETTINGS)),
-  };
-}
+  return defaultState();
+})();
 
 function saveState() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   updateHeaderSub();
 }
+
+function getTests() { return state.settings.tests || DEFAULT_TESTS; }
 
 function updateHeaderSub() {
   const n = Object.keys(state.students).length;
@@ -590,76 +369,59 @@ function updateHeaderSub() {
     n ? `${n} students · ${classes.size} classes` : 'No data loaded';
 }
 
-// ════════════════════════════════════════════════════════════════
-// NAVIGATION
-// ════════════════════════════════════════════════════════════════
+// ── Navigation ───────────────────────────────────────────────
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
-  const idx = ['data','class','cohort','settings'].indexOf(id);
-  document.querySelectorAll('nav button')[idx].classList.add('active');
+  ['data','class','cohort','settings'].forEach((p,i) =>
+    document.querySelectorAll('nav button')[i].classList.toggle('active', p === id));
+  if (id === 'data')     { renderUploadZones(); renderDataSummary(); }
   if (id === 'class')    renderClassView();
   if (id === 'cohort')   renderCohortView();
   if (id === 'settings') renderSettings();
-  if (id === 'data')     renderDataSummary();
 }
 
-// ════════════════════════════════════════════════════════════════
-// MASTER ROLL UPLOAD
-// ════════════════════════════════════════════════════════════════
-let pendingRoll = { headers: [], rows: [] };
+// ── Upload zones (dynamic) ───────────────────────────────────
+const TEST_ICONS = ['📖','✏️','📝','✍️','🔢','🔬','🌍','🎨','🎵','💡'];
 
-function triggerRollUpload() { document.getElementById('roll-file-input').click(); }
-function dropRollFile(e) {
-  e.preventDefault(); e.currentTarget.classList.remove('drag');
-  parseRollFile(e.dataTransfer.files[0]);
-}
-function handleRollFileInput(e) { parseRollFile(e.target.files[0]); e.target.value = ''; }
-
-function parseRollFile(file) {
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const lines = ev.target.result.split(/\r?\n/).filter(l => l.trim());
-    if (lines.length < 2) { toast('Roll CSV appears empty'); return; }
-    const headers = parseCSVLine(lines[0]);
-    const rows = lines.slice(1).map(parseCSVLine);
-    pendingRoll.headers = headers; pendingRoll.rows = rows;
-    openRollMapModal(headers, rows);
-  };
-  reader.readAsText(file);
-}
-
-function openRollMapModal(headers, rows) {
-  const preview = rows.slice(0, 3);
-  const fields = [
-    { key: 'email',     label: 'Email (Student ID)', required: true,  patterns: ['email','mail','address'] },
-    { key: 'firstname', label: 'First Name',          required: true,  patterns: ['first','given','forename'] },
-    { key: 'lastname',  label: 'Last Name / Surname', required: true,  patterns: ['last','sur','family'] },
-    { key: 'class',     label: 'Class / Group',       required: false, patterns: ['class','group','room','year','cohort','form'] },
-  ];
-  let html = '';
-  fields.forEach(f => {
-    const guess = guessColumnByPatterns(headers, f.patterns);
-    html += `<div class="map-row" style="margin-bottom:12px">
-      <div class="map-label">${f.label}${f.required ? ' <span style="color:red">*</span>' : ''}</div>
-      <div style="flex:1">
-        <select id="roll-map-${f.key}" style="width:100%">
-          <option value="">— skip —</option>
-          ${headers.map((h, i) => `<option value="${i}" ${i === guess ? 'selected' : ''}>${h}</option>`).join('')}
-        </select>
-        <div style="font-size:.7rem;color:var(--muted);margin-top:3px">
-          Preview: ${guess >= 0 ? preview.map(r => r[guess]).filter(Boolean).slice(0, 2).join(', ') : '—'}
-        </div>
-      </div>
+function renderUploadZones() {
+  const tests = getTests();
+  const container = document.getElementById('test-upload-zones');
+  container.innerHTML = tests.map((t, i) => {
+    const count = Object.values(state.students).filter(s => s.scores[t.name] != null).length;
+    const loaded = count > 0;
+    return `<div id="zone-${i}" class="upload-zone"
+        onclick="triggerUpload(${i})"
+        ondragover="dragOver(event)" ondrop="dropFile(event,${i})"
+        style="${loaded ? 'border-color:var(--accent);background:#EEF3F0;' : ''}">
+      <div class="icon">${TEST_ICONS[i % TEST_ICONS.length]}</div>
+      <p><strong>${t.name}</strong><br>Drop CSV or click to upload</p>
+      <div id="status-${i}">${loaded ? `<div style="margin-top:6px;color:var(--accent);font-size:.73rem;font-weight:600">✓ ${count} records loaded</div>` : ''}</div>
     </div>`;
-  });
-  document.getElementById('roll-map-fields').innerHTML = html;
-  document.getElementById('roll-modal').classList.add('open');
+  }).join('');
+  const sel = document.getElementById('me-test');
+  if (sel) sel.innerHTML = tests.map(t => `<option>${t.name}</option>`).join('');
 }
 
-function guessColumnByPatterns(headers, patterns) {
+// ── CSV parsing ──────────────────────────────────────────────
+function parseCSVLine(line) {
+  const result = []; let cur = ''; let inQ = false;
+  for (const c of line) {
+    if (c === '"') inQ = !inQ;
+    else if (c === ',' && !inQ) { result.push(cur.trim()); cur = ''; }
+    else cur += c;
+  }
+  result.push(cur.trim()); return result;
+}
+
+function parseCSVText(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  if (lines.length < 2) return null;
+  return { headers: parseCSVLine(lines[0]), rows: lines.slice(1).map(parseCSVLine) };
+}
+
+function guessCol(headers, patterns) {
   for (let i = 0; i < headers.length; i++) {
     const h = headers[i].toLowerCase();
     if (patterns.some(p => h.includes(p))) return i;
@@ -667,318 +429,305 @@ function guessColumnByPatterns(headers, patterns) {
   return -1;
 }
 
+function dragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag'); }
+
+// ── Roll upload ──────────────────────────────────────────────
+let pendingRoll = null;
+
+function triggerRollUpload() { document.getElementById('roll-file-input').click(); }
+function dropRollFile(e) { e.preventDefault(); e.currentTarget.classList.remove('drag'); readFile(e.dataTransfer.files[0], openRollModal); }
+function handleRollFileInput(e) { readFile(e.target.files[0], openRollModal); e.target.value = ''; }
+
+function readFile(file, cb) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => cb(ev.target.result);
+  reader.readAsText(file);
+}
+
+function openRollModal(text) {
+  const parsed = parseCSVText(text);
+  if (!parsed) { toast('Roll CSV appears empty'); return; }
+  pendingRoll = parsed;
+  const { headers, rows } = parsed;
+  const preview = rows.slice(0, 3);
+  const fields = [
+    { key: 'email', label: 'Email (Student ID)', required: true,  pats: ['email','mail','address'] },
+    { key: 'first', label: 'First Name',          required: true,  pats: ['first','given','fore'] },
+    { key: 'last',  label: 'Last Name',            required: true,  pats: ['last','sur','family'] },
+    { key: 'class', label: 'Class / Group',        required: false, pats: ['class','group','room','year','cohort','form'] },
+  ];
+  document.getElementById('roll-map-fields').innerHTML = fields.map(f => {
+    const g = guessCol(headers, f.pats);
+    return `<div class="map-row">
+      <div class="map-label">${f.label}${f.required ? ' <span style="color:#c0392b">*</span>' : ''}</div>
+      <div style="flex:1">
+        <select id="rmap-${f.key}" style="width:100%">
+          <option value="">— skip —</option>
+          ${headers.map((h,i) => `<option value="${i}" ${i===g?'selected':''}>${h}</option>`).join('')}
+        </select>
+        <div style="font-size:.7rem;color:var(--muted);margin-top:3px">
+          Preview: ${g >= 0 ? preview.map(r=>r[g]).filter(Boolean).slice(0,2).join(', ') : '—'}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('roll-modal').classList.add('open');
+}
+
 function applyRollMapping() {
-  const emailIdx = parseInt(document.getElementById('roll-map-email').value);
-  const firstIdx = parseInt(document.getElementById('roll-map-firstname').value);
-  const lastIdx  = parseInt(document.getElementById('roll-map-lastname').value);
-  const classIdx = parseInt(document.getElementById('roll-map-class').value);
+  const eIdx = parseInt(document.getElementById('rmap-email').value);
+  const fIdx = parseInt(document.getElementById('rmap-first').value);
+  const lIdx = parseInt(document.getElementById('rmap-last').value);
+  const cIdx = parseInt(document.getElementById('rmap-class').value);
+  if (isNaN(eIdx) || isNaN(fIdx) || isNaN(lIdx)) { toast('Email, First Name and Last Name are required'); return; }
 
-  if (isNaN(emailIdx) || isNaN(firstIdx) || isNaN(lastIdx)) {
-    toast('Email, First Name, and Last Name are required'); return;
-  }
-
-  let imported = 0;
+  let n = 0;
   pendingRoll.rows.forEach(row => {
-    const email = row[emailIdx]?.trim().toLowerCase();
+    const email = row[eIdx]?.trim().toLowerCase();
     if (!email) return;
-    const first = row[firstIdx]?.trim() || '';
-    const last  = row[lastIdx]?.trim()  || '';
-    const fullName = [first, last].filter(Boolean).join(' ');
-    const cls = (!isNaN(classIdx) && row[classIdx]) ? row[classIdx].trim() : '';
-
-    // Roll is source of truth — always set name and class from roll
-    if (!state.students[email]) state.students[email] = { name: '', class: '', scores: {}, fromRoll: true };
-    state.students[email].name     = fullName || state.students[email].name;
-    state.students[email].class    = cls      || state.students[email].class;
+    const name = [row[fIdx]?.trim(), row[lIdx]?.trim()].filter(Boolean).join(' ');
+    const cls  = (!isNaN(cIdx) && row[cIdx]) ? row[cIdx].trim() : '';
+    if (!state.students[email]) state.students[email] = { name:'', class:'', scores:{}, fromRoll:false };
+    state.students[email].name     = name || state.students[email].name;
+    state.students[email].class    = cls  || state.students[email].class;
     state.students[email].fromRoll = true;
-    imported++;
+    n++;
   });
 
-  saveState();
-  closeRollModal();
+  saveState(); closeRollModal();
   const zone = document.getElementById('zone-roll');
-  const status = document.getElementById('status-roll');
-  if (zone) { zone.style.borderColor = 'var(--accent)'; zone.style.background = '#EEF3F0'; }
-  if (status) status.innerHTML = `<div style="margin-top:8px;color:var(--accent);font-size:.75rem;font-weight:600">✓ ${imported} students on roll</div>`;
+  const stat = document.getElementById('status-roll');
+  if (zone) { zone.style.borderColor='var(--accent)'; zone.style.background='#EEF3F0'; }
+  if (stat) stat.innerHTML = `<div style="margin-top:6px;color:var(--accent);font-size:.73rem;font-weight:600">✓ ${n} students on roll</div>`;
   renderDataSummary(); updateClassFilter();
-  toast(`Roll imported — ${imported} students`);
+  toast(`Roll imported — ${n} students`);
 }
 
 function closeRollModal() { document.getElementById('roll-modal').classList.remove('open'); }
 
-// ════════════════════════════════════════════════════════════════
-// TEST CSV UPLOAD & MAPPING
-// ════════════════════════════════════════════════════════════════
-let pendingCSV = { test: null, headers: [], rows: [] };
+// ── Test CSV upload ──────────────────────────────────────────
+let pendingCSV = { testIdx: null, data: null };
 
-function triggerUpload(test) {
-  pendingCSV.test = test;
-  document.getElementById('file-input').click();
-}
-function dragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag'); }
-function dropFile(e, test) {
-  e.preventDefault(); e.currentTarget.classList.remove('drag');
-  pendingCSV.test = test;
-  parseCSVFile(e.dataTransfer.files[0]);
-}
-function handleFileInput(e) { parseCSVFile(e.target.files[0]); e.target.value = ''; }
+function triggerUpload(idx) { pendingCSV.testIdx = idx; document.getElementById('file-input').click(); }
+function dropFile(e, idx)   { e.preventDefault(); e.currentTarget.classList.remove('drag'); pendingCSV.testIdx = idx; readFile(e.dataTransfer.files[0], openMapModal); }
+function handleFileInput(e) { readFile(e.target.files[0], openMapModal); e.target.value = ''; }
 
-function parseCSVFile(file) {
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const lines = ev.target.result.split(/\r?\n/).filter(l => l.trim());
-    if (lines.length < 2) { toast('CSV appears empty'); return; }
-    const headers = parseCSVLine(lines[0]);
-    const rows = lines.slice(1).map(parseCSVLine);
-    pendingCSV.headers = headers; pendingCSV.rows = rows;
-    openMapModal(pendingCSV.test, headers, rows);
-  };
-  reader.readAsText(file);
-}
-
-function parseCSVLine(line) {
-  const result = []; let cur = ''; let inQ = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (c === '"') { inQ = !inQ; }
-    else if (c === ',' && !inQ) { result.push(cur.trim()); cur = ''; }
-    else cur += c;
-  }
-  result.push(cur.trim()); return result;
-}
-
-function openMapModal(test, headers, rows) {
-  document.getElementById('map-test-name').textContent = test;
-  const preview = rows.slice(0,3);
+function openMapModal(text) {
+  const parsed = parseCSVText(text);
+  if (!parsed) { toast('CSV appears empty'); return; }
+  pendingCSV.data = parsed;
+  const { headers, rows } = parsed;
+  const testName = getTests()[pendingCSV.testIdx]?.name || 'Test';
+  document.getElementById('map-test-name').textContent = testName;
+  const preview = rows.slice(0, 3);
   const fields = [
-    { key: 'email', label: 'Student Email / ID', required: true },
-    { key: 'name',  label: 'Full Name',           required: false },
-    { key: 'class', label: 'Class',               required: false },
-    { key: 'score', label: 'Total Score',         required: true },
+    { key: 'email', label: 'Student Email', required: true,  pats: ['email','mail','address','id'] },
+    { key: 'name',  label: 'Full Name',     required: false, pats: ['name','full','student'] },
+    { key: 'class', label: 'Class',         required: false, pats: ['class','group','room','year','cohort'] },
+    { key: 'score', label: 'Total Score',   required: true,  pats: ['score','total','mark','result','points','grade'] },
   ];
-  let html = '';
-  fields.forEach(f => {
-    const guess = guessColumn(headers, f.key);
-    html += `<div class="map-row" style="margin-bottom:12px">
-      <div class="map-label">${f.label}${f.required ? ' <span style="color:red">*</span>' : ''}</div>
+  document.getElementById('map-fields').innerHTML = fields.map(f => {
+    const g = guessCol(headers, f.pats);
+    return `<div class="map-row">
+      <div class="map-label">${f.label}${f.required ? ' <span style="color:#c0392b">*</span>' : ''}</div>
       <div style="flex:1">
-        <select id="map-${f.key}" style="width:100%">
+        <select id="tmap-${f.key}" style="width:100%">
           <option value="">— skip —</option>
-          ${headers.map((h,i) => `<option value="${i}" ${i===guess?'selected':''}>${h}</option>`).join('')}
+          ${headers.map((h,i) => `<option value="${i}" ${i===g?'selected':''}>${h}</option>`).join('')}
         </select>
         <div style="font-size:.7rem;color:var(--muted);margin-top:3px">
-          Preview: ${guess >= 0 ? preview.map(r => r[guess]).filter(Boolean).slice(0,2).join(', ') : '—'}
+          Preview: ${g >= 0 ? preview.map(r=>r[g]).filter(Boolean).slice(0,2).join(', ') : '—'}
         </div>
       </div>
     </div>`;
-  });
-  document.getElementById('map-fields').innerHTML = html;
+  }).join('');
   document.getElementById('map-modal').classList.add('open');
 }
 
-function guessColumn(headers, key) {
-  const patterns = {
-    email: ['email','mail','address','id','student'],
-    name:  ['name','student','full'],
-    class: ['class','group','room','year','cohort'],
-    score: ['score','total','mark','result','points','grade'],
-  };
-  return guessColumnByPatterns(headers, patterns[key] || []);
-}
-
 function applyMapping() {
-  const emailIdx = parseInt(document.getElementById('map-email').value);
-  const nameIdx  = parseInt(document.getElementById('map-name').value);
-  const classIdx = parseInt(document.getElementById('map-class').value);
-  const scoreIdx = parseInt(document.getElementById('map-score').value);
+  const eIdx = parseInt(document.getElementById('tmap-email').value);
+  const nIdx = parseInt(document.getElementById('tmap-name').value);
+  const cIdx = parseInt(document.getElementById('tmap-class').value);
+  const sIdx = parseInt(document.getElementById('tmap-score').value);
+  if (isNaN(eIdx) || isNaN(sIdx)) { toast('Email and Score are required'); return; }
 
-  if (isNaN(emailIdx) || isNaN(scoreIdx)) { toast('Email and Score columns are required'); return; }
-
-  const test = pendingCSV.test;
-  let imported = 0;
-  pendingCSV.rows.forEach(row => {
-    const email = row[emailIdx]?.trim().toLowerCase();
+  const testName = getTests()[pendingCSV.testIdx]?.name;
+  if (!testName) return;
+  let n = 0;
+  pendingCSV.data.rows.forEach(row => {
+    const email = row[eIdx]?.trim().toLowerCase();
     if (!email) return;
-    if (!state.students[email]) state.students[email] = { name: '', class: '', scores: {}, fromRoll: false };
+    if (!state.students[email]) state.students[email] = { name:'', class:'', scores:{}, fromRoll:false };
     const s = state.students[email];
-    // Only update name/class from test CSV if student is NOT already on the master roll
     if (!s.fromRoll) {
-      if (!isNaN(nameIdx)  && row[nameIdx])  s.name  = row[nameIdx].trim();
-      if (!isNaN(classIdx) && row[classIdx]) s.class = row[classIdx].trim();
+      if (!isNaN(nIdx) && row[nIdx]) s.name  = row[nIdx].trim();
+      if (!isNaN(cIdx) && row[cIdx]) s.class = row[cIdx].trim();
     }
-    const score = parseFloat(row[scoreIdx]);
-    if (!isNaN(score)) { s.scores[test] = score; imported++; }
+    const score = parseFloat(row[sIdx]);
+    if (!isNaN(score)) { s.scores[testName] = score; n++; }
   });
 
-  saveState();
-  closeModal();
-  updateZoneStatus(test, imported);
-  renderDataSummary();
-  updateClassFilter();
-  toast(`Imported ${imported} scores for ${test}`);
+  saveState(); closeMapModal();
+  const idx = pendingCSV.testIdx;
+  const zEl = document.getElementById(`zone-${idx}`);
+  const sEl = document.getElementById(`status-${idx}`);
+  if (zEl) { zEl.style.borderColor='var(--accent)'; zEl.style.background='#EEF3F0'; }
+  if (sEl) sEl.innerHTML = `<div style="margin-top:6px;color:var(--accent);font-size:.73rem;font-weight:600">✓ ${n} records loaded</div>`;
+  renderDataSummary(); updateClassFilter();
+  toast(`Imported ${n} scores for ${testName}`);
 }
 
-function updateZoneStatus(test, count) {
-  const el = document.getElementById('status-' + test);
-  if (el) el.innerHTML = `<div style="margin-top:8px;color:var(--accent);font-size:.75rem;font-weight:600">✓ ${count} records loaded</div>`;
-  const zone = document.getElementById('zone-' + test);
-  if (zone) { zone.style.borderColor = 'var(--accent)'; zone.style.background = '#EEF3F0'; }
-}
+function closeMapModal() { document.getElementById('map-modal').classList.remove('open'); }
 
-function closeModal() { document.getElementById('map-modal').classList.remove('open'); }
-
-// ════════════════════════════════════════════════════════════════
-// MANUAL ENTRY
-// ════════════════════════════════════════════════════════════════
+// ── Manual entry ─────────────────────────────────────────────
 function manualEntry() {
   const email = document.getElementById('me-email').value.trim().toLowerCase();
   const name  = document.getElementById('me-name').value.trim();
   const cls   = document.getElementById('me-class').value.trim();
   const test  = document.getElementById('me-test').value;
   const score = parseFloat(document.getElementById('me-score').value);
-
   if (!email) { toast('Email is required'); return; }
   if (isNaN(score)) { toast('Enter a valid score'); return; }
-
-  if (!state.students[email]) state.students[email] = { name: '', class: '', scores: {} };
+  if (!state.students[email]) state.students[email] = { name:'', class:'', scores:{}, fromRoll:false };
   const s = state.students[email];
   if (name) s.name = name;
   if (cls)  s.class = cls;
   s.scores[test] = score;
-
   saveState(); renderDataSummary(); updateClassFilter();
   toast(`Saved ${test} score for ${name || email}`);
   document.getElementById('me-score').value = '';
 }
 
-// ════════════════════════════════════════════════════════════════
-// DATA SUMMARY
-// ════════════════════════════════════════════════════════════════
+// ── Data summary ─────────────────────────────────────────────
 function renderDataSummary() {
   const students = Object.entries(state.students);
-  if (!students.length) {
-    document.getElementById('data-summary-card').style.display = 'none';
-    return;
-  }
+  const tests = getTests();
+  if (!students.length) { document.getElementById('data-summary-card').style.display = 'none'; return; }
   document.getElementById('data-summary-card').style.display = '';
-  const tests = ['Reading','Spelling','Conventions','Writing'];
-  const counts = {};
-  tests.forEach(t => counts[t] = students.filter(([,s]) => s.scores[t] != null).length);
   const classes = new Set(students.map(([,s]) => s.class).filter(Boolean));
 
   document.getElementById('data-stats').innerHTML = [
     { val: students.length, lbl: 'Students' },
-    { val: classes.size, lbl: 'Classes' },
-    ...tests.map(t => ({ val: counts[t], lbl: `${t} scores` })),
+    { val: classes.size,    lbl: 'Classes' },
+    ...tests.map(t => ({ val: students.filter(([,s]) => s.scores[t.name] != null).length, lbl: `${t.name} scores` })),
   ].map(s => `<div class="stat-box"><div class="val">${s.val}</div><div class="lbl">${s.lbl}</div></div>`).join('');
 
-  const tbody = document.getElementById('data-tbody');
-  tbody.innerHTML = students.sort(([,a],[,b]) => (a.class||'').localeCompare(b.class||'') || (a.name||'').localeCompare(b.name||'')).map(([email, s]) =>
-    `<tr>
+  document.getElementById('data-thead').innerHTML =
+    `<th>Email</th><th>Name</th><th>Class</th>${tests.map(t=>`<th>${t.name}</th>`).join('')}`;
+
+  document.getElementById('data-tbody').innerHTML = students
+    .sort(([,a],[,b]) => (a.class||'').localeCompare(b.class||'') || (a.name||'').localeCompare(b.name||''))
+    .map(([email,s]) => `<tr>
       <td class="mono">${email}</td>
       <td>${s.name || '<em style="color:var(--muted)">—</em>'}</td>
       <td>${s.class || '<em style="color:var(--muted)">—</em>'}</td>
-      ${tests.map(t => `<td>${s.scores[t] != null ? s.scores[t] : '<span style="color:var(--muted)">—</span>'}</td>`).join('')}
-    </tr>`
-  ).join('');
+      ${tests.map(t => `<td>${s.scores[t.name] != null ? s.scores[t.name] : '<span style="color:var(--muted)">—</span>'}</td>`).join('')}
+    </tr>`).join('');
 
   updateHeaderSub();
 }
 
-// ════════════════════════════════════════════════════════════════
-// ANALYTICS HELPERS
-// ════════════════════════════════════════════════════════════════
-const TESTS = ['Reading','Spelling','Conventions','Writing'];
+// ── Analytics ────────────────────────────────────────────────
+function calcStats(scoresList) {
+  const vals = scoresList.filter(v => v != null);
+  if (!vals.length) return { mean: null, sd: null, n: 0 };
+  const mean = vals.reduce((a,b) => a+b, 0) / vals.length;
+  const sd = vals.length > 1
+    ? Math.sqrt(vals.reduce((a,b) => a+(b-mean)**2, 0) / (vals.length - 1))
+    : 0;
+  return { mean, sd, n: vals.length };
+}
 
 function cohortStats() {
-  const stats = {};
-  TESTS.forEach(t => {
-    const scores = Object.values(state.students).map(s => s.scores[t]).filter(v => v != null);
-    if (!scores.length) { stats[t] = { mean: null, sd: null, n: 0 }; return; }
-    const mean = scores.reduce((a,b) => a+b, 0) / scores.length;
-    const sd = Math.sqrt(scores.reduce((a,b) => a + (b-mean)**2, 0) / scores.length);
-    stats[t] = { mean, sd, n: scores.length };
+  const tests = getTests();
+  const out = {};
+  tests.forEach(t => {
+    const scores = Object.values(state.students).map(s => s.scores[t.name]).filter(v => v != null);
+    out[t.name] = calcStats(scores);
   });
-  return stats;
+  return out;
 }
 
-function getAbsBand(score, test) {
-  if (score == null) return 'Not Assessed';
-  const cfg = state.settings.tests[test];
-  if (!cfg) return 'Not Assessed';
-  if (score <= cfg.band1Max) return 'Needs Support';
-  if (score <= cfg.band2Max) return 'Monitor';
-  return 'Extending';
+function classStats(cls) {
+  const tests = getTests();
+  const out = {};
+  const classStudents = Object.values(state.students).filter(s => s.class === cls);
+  tests.forEach(t => {
+    const scores = classStudents.map(s => s.scores[t.name]).filter(v => v != null);
+    out[t.name] = calcStats(scores);
+  });
+  return out;
 }
 
-function getRelBand(score, test, stats) {
-  if (score == null || !stats[test] || stats[test].sd == null || stats[test].sd === 0) return 'Not Assessed';
-  const { mean, sd } = stats[test];
-  const { lo, mid, hi } = state.settings.sd;
+function getBand(score, stats) {
+  if (score == null || !stats || stats.mean === null) return null;
+  const { mean, sd } = stats;
+  const { inner, outer } = state.settings.sd;
+  if (sd === 0) return 2;
   const z = (score - mean) / sd;
-  if (z >  hi)  return 'Well above average';
-  if (z >  mid) return 'Above average';
-  if (z >  lo)  return 'Slightly above average';
-  if (z >= -lo) return 'Slightly below average';
-  if (z >= -mid)return 'Below average';
-  return 'Well below average';
+  if (z >  outer) return 4;
+  if (z >  inner) return 3;
+  if (z >= -inner) return 2;
+  if (z >= -outer) return 1;
+  return 0;
 }
 
-function getSDScore(email, stats) {
+function bandChip(bandIdx, isClass) {
+  if (bandIdx === null) return `<span class="chip chip-grey">Not assessed</span>`;
+  const label = BAND_LABELS[bandIdx];
+  const cls   = BAND_CLASSES[bandIdx];
+  if (isClass) {
+    const colors = ['var(--r1-bg)','var(--r2-bg)','var(--r3-bg)','var(--r4-bg)','var(--r5-bg)'];
+    return `<span class="chip" style="outline:2px solid ${colors[bandIdx]};color:${colors[bandIdx]};background:transparent">${label}</span>`;
+  }
+  return `<span class="chip ${cls}">${label}</span>`;
+}
+
+function getSDScore(email, cStats) {
   const s = state.students[email];
   if (!s) return null;
-  const vals = TESTS.map(t => {
-    const score = s.scores[t];
-    if (score == null || !stats[t] || !stats[t].sd) return null;
-    return (score - stats[t].mean) / stats[t].sd;
+  const tests = getTests();
+  const vals = tests.map(t => {
+    const score = s.scores[t.name];
+    const st = cStats[t.name];
+    if (score == null || !st || !st.sd || st.sd === 0) return null;
+    return (score - st.mean) / st.sd;
   }).filter(v => v != null);
-  return vals.length ? vals.reduce((a,b) => a+b,0) / vals.length : null;
+  return vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
 }
 
-function getPriority(email) {
+function getPriority(email, cStats) {
   const s = state.students[email];
   if (!s) return 'unknown';
-  const bands = TESTS.map(t => getAbsBand(s.scores[t], t));
-  const assessed = bands.filter(b => b !== 'Not Assessed');
-  if (assessed.length < TESTS.length) return 'incomplete';
-  const needs = bands.filter(b => b === 'Needs Support').length;
-  if (needs >= 2) return 'high';
-  if (needs === 1) return 'some';
+  const tests = getTests();
+  const bands = tests.map(t => getBand(s.scores[t.name], cStats[t.name]));
+  const assessed = bands.filter(b => b !== null);
+  if (assessed.length < tests.length) return 'incomplete';
+  const wellBelow = assessed.filter(b => b === 0).length;
+  const below     = assessed.filter(b => b === 1).length;
+  if (wellBelow >= 1 || below >= 2) return 'high';
+  if (assessed.some(b => b <= 2)) return 'some';
   return 'ok';
 }
 
-function absChip(band) {
-  const map = {
-    'Needs Support': 'chip-red',
-    'Monitor':       'chip-amber',
-    'Extending':     'chip-green',
-    'Not Assessed':  'chip-grey',
-  };
-  return `<span class="chip ${map[band] || 'chip-grey'}">${band}</span>`;
-}
-
-function relChip(band) {
-  const map = {
-    'Well above average':    'chip-r6',
-    'Above average':         'chip-r5',
-    'Slightly above average':'chip-r4',
-    'Slightly below average':'chip-r3',
-    'Below average':         'chip-r2',
-    'Well below average':    'chip-r1',
-    'Not Assessed':          'chip-grey',
-  };
-  return `<span class="chip ${map[band] || 'chip-grey'}">${band}</span>`;
+function priHtml(p) {
+  return {
+    high: '<span class="pri-high">🔴 High Priority</span>',
+    some: '<span class="pri-some">🟠 Some Support</span>',
+    ok:   '<span class="pri-ok">🟢 On Track</span>',
+    incomplete: '<span class="pri-inc">⚠ Incomplete</span>',
+  }[p] || '—';
 }
 
 function sdBar(z) {
-  if (z == null) return '<span style="color:var(--muted);font-size:.75rem">—</span>';
-  const pct = Math.min(Math.max((z + 2) / 4 * 100, 0), 100);
-  const col = z < -1 ? '#C0392B' : z < 0 ? '#D35400' : z < 1 ? '#27AE60' : '#0D5257';
-  const left = z >= 0 ? 50 : pct;
+  if (z == null) return '<span style="color:var(--muted);font-size:.73rem">—</span>';
+  const pct  = Math.min(Math.max((z+2)/4*100, 0), 100);
+  const col  = z < -1.5 ? 'var(--r1-bg)' : z < -0.5 ? 'var(--r2-bg)' : z < 0.5 ? 'var(--r3-bg)' : z < 1.5 ? 'var(--r4-bg)' : 'var(--r5-bg)';
+  const left  = z >= 0 ? 50 : pct;
   const width = Math.abs(pct - 50);
   return `<div class="sd-bar-wrap">
-    <div class="sd-val">${z >= 0 ? '+' : ''}${z.toFixed(2)}</div>
+    <div class="sd-val">${z>=0?'+':''}${z.toFixed(2)}</div>
     <div class="sd-bar-track">
       <div class="sd-bar-fill" style="left:${left}%;width:${width}%;background:${col}"></div>
       <div style="position:absolute;left:50%;top:-3px;width:1px;height:12px;background:var(--border)"></div>
@@ -986,25 +735,9 @@ function sdBar(z) {
   </div>`;
 }
 
-function priHtml(p) {
-  const map = {
-    high: '<span class="pri-high">🔴 High Priority</span>',
-    some: '<span class="pri-some">🟠 Some Support</span>',
-    ok:   '<span class="pri-ok">🟢 On Track</span>',
-    incomplete: '<span class="pri-inc">⚠ Incomplete</span>',
-  };
-  return map[p] || '—';
-}
-
-function getStrategy(test, band) {
-  return state.settings.strategies?.[test]?.[band] || '';
-}
-
-// ════════════════════════════════════════════════════════════════
-// CLASS VIEW
-// ════════════════════════════════════════════════════════════════
+// ── Class view ───────────────────────────────────────────────
 function updateClassFilter() {
-  const classes = [...new Set(Object.values(state.students).map(s => s.class).filter(Boolean))].sort();
+  const classes = [...new Set(Object.values(state.students).map(s=>s.class).filter(Boolean))].sort();
   const sel = document.getElementById('class-filter');
   const cur = sel.value;
   sel.innerHTML = '<option value="__all__">All Classes</option>' +
@@ -1014,138 +747,125 @@ function updateClassFilter() {
 function renderClassView() {
   const students = Object.entries(state.students);
   if (!students.length) return;
-
-  const cls    = document.getElementById('class-filter').value;
-  const sortBy = document.getElementById('class-sort').value;
-  const stats  = cohortStats();
+  const tests   = getTests();
+  const cls     = document.getElementById('class-filter').value;
+  const sortBy  = document.getElementById('class-sort').value;
+  const cStats  = cohortStats();
+  const clsStatsMap = cls !== '__all__' ? classStats(cls) : cStats;
 
   let filtered = cls === '__all__' ? students : students.filter(([,s]) => s.class === cls);
+  const withSD = filtered.map(([email,s]) => [email, s, getSDScore(email, cStats)]);
 
-  // Compute SD scores for sorting
-  const withSD = filtered.map(([email, s]) => [email, s, getSDScore(email, stats)]);
-
-  if (sortBy === 'name')    withSD.sort(([,a],[,b]) => (a.name||'').localeCompare(b.name||''));
-  if (sortBy === 'sd_asc')  withSD.sort(([,,a],[,,b]) => (a??99)-(b??99));
-  if (sortBy === 'sd_desc') withSD.sort(([,,a],[,,b]) => (b??-99)-(a??-99));
+  if (sortBy === 'name')     withSD.sort(([,a],[,b]) => (a.name||'').localeCompare(b.name||''));
+  if (sortBy === 'sd_asc')   withSD.sort(([,,a],[,,b]) => (a??99)-(b??99));
+  if (sortBy === 'sd_desc')  withSD.sort(([,,a],[,,b]) => (b??-99)-(a??-99));
   if (sortBy === 'priority') {
     const order = { high:0, some:1, ok:2, incomplete:3 };
-    withSD.sort(([ea],[eb]) => (order[getPriority(ea)]||9) - (order[getPriority(eb)]||9));
+    withSD.sort(([ea],[eb]) => (order[getPriority(ea,cStats)]||9)-(order[getPriority(eb,cStats)]||9));
   }
 
-  // Compute SD rank (ascending: 1 = lowest = most in need)
-  const sdSorted = [...withSD].filter(([,,z]) => z!=null).sort(([,,a],[,,b]) => a-b);
-  const rankMap = {};
-  sdSorted.forEach(([email,,], i) => rankMap[email] = i+1);
+  const sdSorted = [...withSD].filter(([,,z])=>z!=null).sort(([,,a],[,,b])=>a-b);
+  const rankMap  = {};
+  sdSorted.forEach(([email,,],i) => rankMap[email] = i+1);
 
-  const html = `
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th>Name</th><th>Class</th>
-          ${TESTS.map(t => `<th>${t}<br><span style="font-size:.65rem;opacity:.7">Score / Band / Relative</span></th>`).join('')}
-          <th>Priority</th>
-          <th>Avg SD</th>
-          <th>SD Rank</th>
-        </tr></thead>
-        <tbody>
-          ${withSD.map(([email, s, sdAvg]) => {
-            const pri = getPriority(email);
-            const rank = rankMap[email] || '—';
-            return `<tr style="cursor:pointer" onclick="showProfile('${email}')">
-              <td><strong>${s.name || '—'}</strong><br><span class="mono" style="font-size:.68rem;color:var(--muted)">${email}</span></td>
-              <td>${s.class || '—'}</td>
-              ${TESTS.map(t => {
-                const score = s.scores[t];
-                const abs = getAbsBand(score, t);
-                const rel = getRelBand(score, t, stats);
-                return `<td>
-                  <div style="font-family:'DM Mono',monospace;font-size:.8rem;margin-bottom:4px">
-                    ${score != null ? score + '<span style="color:var(--muted)">/' + state.settings.tests[t].max + '</span>' : '<span style="color:var(--muted)">—</span>'}
-                  </div>
-                  ${absChip(abs)}<br>
-                  <div style="margin-top:3px">${relChip(rel)}</div>
-                </td>`;
-              }).join('')}
-              <td>${priHtml(pri)}</td>
-              <td>${sdBar(sdAvg)}</td>
-              <td style="text-align:center;font-family:'DM Mono',monospace;font-weight:600">${rank}</td>
-            </tr>`;
+  document.getElementById('class-view-content').innerHTML = `
+    <div class="table-wrap"><table>
+      <thead><tr>
+        <th>Name</th><th>Class</th>
+        ${tests.map(t => `<th style="min-width:160px">${t.name}<br>
+          <span style="font-size:.62rem;opacity:.75;font-weight:400">Cohort / Class</span></th>`).join('')}
+        <th>Priority</th><th>Avg SD</th><th>SD Rank</th>
+      </tr></thead>
+      <tbody>
+        ${withSD.map(([email,s,sdAvg]) => `<tr style="cursor:pointer" onclick="showProfile('${email}')">
+          <td><strong>${s.name||'—'}</strong><br>
+            <span class="mono" style="font-size:.66rem;color:var(--muted)">${email}</span></td>
+          <td>${s.class||'—'}</td>
+          ${tests.map(t => {
+            const score = s.scores[t.name];
+            const cohortBand = getBand(score, cStats[t.name]);
+            const clsBand    = getBand(score, clsStatsMap[t.name]);
+            return `<td>
+              <div style="font-family:'DM Mono',monospace;font-size:.78rem;margin-bottom:4px">
+                ${score != null ? `${score}<span style="color:var(--muted)">/${t.max}</span>` : '<span style="color:var(--muted)">—</span>'}
+              </div>
+              <div style="display:flex;gap:4px;flex-wrap:wrap">
+                ${bandChip(cohortBand, false)}
+                ${cls !== '__all__' ? bandChip(clsBand, true) : ''}
+              </div>
+            </td>`;
           }).join('')}
-        </tbody>
-      </table>
-    </div>
-    <p style="color:var(--muted);font-size:.75rem;margin-top:8px">
-      Click any row to see the full student profile. SD Rank 1 = lowest average cohort position.
-      ${cls === '__all__' ? '' : `Showing ${withSD.length} students in ${cls}.`}
+          <td>${priHtml(getPriority(email, cStats))}</td>
+          <td>${sdBar(sdAvg)}</td>
+          <td style="text-align:center;font-family:'DM Mono',monospace;font-weight:600">${rankMap[email]||'—'}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table></div>
+    <p style="color:var(--muted);font-size:.73rem;margin-top:8px">
+      Click any row for the full student profile. SD Rank 1 = lowest cohort position.
+      ${cls !== '__all__' ? 'Outlined chip = band within this class only.' : ''}
     </p>`;
-
-  document.getElementById('class-view-content').innerHTML = html;
 }
 
-// ════════════════════════════════════════════════════════════════
-// COHORT VIEW
-// ════════════════════════════════════════════════════════════════
+// ── Cohort view ──────────────────────────────────────────────
 function renderCohortView() {
   const students = Object.entries(state.students);
   if (!students.length) return;
+  const tests   = getTests();
+  const cStats  = cohortStats();
+  const classes = [...new Set(students.map(([,s])=>s.class).filter(Boolean))].sort();
 
-  const stats = cohortStats();
-  const classes = [...new Set(students.map(([,s]) => s.class).filter(Boolean))].sort();
-
-  // Per-test band counts
-  const bandCounts = {};
-  TESTS.forEach(t => {
-    bandCounts[t] = { 'Needs Support': 0, 'Monitor': 0, 'Extending': 0, 'Not Assessed': 0 };
-    students.forEach(([email, s]) => {
-      bandCounts[t][getAbsBand(s.scores[t], t)]++;
+  const bandCount = {};
+  tests.forEach(t => {
+    bandCount[t.name] = [0,0,0,0,0,0];
+    students.forEach(([,s]) => {
+      const b = getBand(s.scores[t.name], cStats[t.name]);
+      if (b === null) bandCount[t.name][5]++;
+      else bandCount[t.name][b]++;
     });
   });
 
-  // Per-class summary
   const classSummary = classes.map(cls => {
-    const cl = students.filter(([,s]) => s.class === cls);
-    const row = { class: cls, n: cl.length };
-    TESTS.forEach(t => {
-      const scores = cl.map(([,s]) => s.scores[t]).filter(v => v != null);
-      row[t + '_mean'] = scores.length ? (scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1) : '—';
-      row[t + '_ns']   = cl.filter(([,s]) => getAbsBand(s.scores[t],t) === 'Needs Support').length;
+    const cl = students.filter(([,s])=>s.class===cls);
+    const row = { class:cls, n:cl.length };
+    tests.forEach(t => {
+      const scores = cl.map(([,s])=>s.scores[t.name]).filter(v=>v!=null);
+      row[t.name+'_mean'] = scores.length ? (scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1) : '—';
     });
     return row;
   });
 
-  const html = `
+  document.getElementById('cohort-view-content').innerHTML = `
     <div class="stats-row">
-      ${[
-        { val: students.length, lbl: 'Total students' },
-        { val: classes.length, lbl: 'Classes' },
-        ...TESTS.map(t => ({ val: stats[t].n, lbl: `${t} assessed` })),
-      ].map(s => `<div class="stat-box"><div class="val">${s.val}</div><div class="lbl">${s.lbl}</div></div>`).join('')}
+      ${[{val:students.length,lbl:'Total students'},{val:classes.length,lbl:'Classes'},
+         ...tests.map(t=>({val:cStats[t.name].n,lbl:`${t.name} assessed`}))
+        ].map(s=>`<div class="stat-box"><div class="val">${s.val}</div><div class="lbl">${s.lbl}</div></div>`).join('')}
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px">
-      ${TESTS.map(t => {
-        const st = stats[t];
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:20px">
+      ${tests.map(t => {
+        const st = cStats[t.name];
+        const bc = bandCount[t.name];
         const total = students.length;
-        const bc = bandCounts[t];
+        const bandColors = ['var(--r1-bg)','var(--r2-bg)','var(--r3-bg)','var(--r4-bg)','var(--r5-bg)','#ccc'];
         return `<div class="card" style="margin:0">
-          <div class="card-title">${t}</div>
+          <div class="card-title" style="margin-bottom:12px">${t.name}</div>
           ${st.mean != null ? `
-            <div style="display:flex;gap:20px;margin-bottom:14px">
-              <div><div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent)">${st.mean.toFixed(1)}</div><div style="font-size:.72rem;color:var(--muted)">Cohort mean</div></div>
-              <div><div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent)">${st.sd.toFixed(2)}</div><div style="font-size:.72rem;color:var(--muted)">Std dev</div></div>
-              <div><div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent)">${st.n}</div><div style="font-size:.72rem;color:var(--muted)">Assessed</div></div>
+            <div style="display:flex;gap:16px;margin-bottom:12px">
+              <div><div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--accent)">${st.mean.toFixed(1)}</div><div style="font-size:.7rem;color:var(--muted)">Mean</div></div>
+              <div><div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--accent)">${st.sd.toFixed(2)}</div><div style="font-size:.7rem;color:var(--muted)">SD</div></div>
+              <div><div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--accent)">${st.n}</div><div style="font-size:.7rem;color:var(--muted)">Assessed</div></div>
             </div>
-            <div style="display:flex;height:12px;border-radius:6px;overflow:hidden;margin-bottom:8px">
-              ${['Needs Support','Monitor','Extending','Not Assessed'].map((b,i) => {
-                const pct = (bc[b]/total*100).toFixed(1);
-                const cols = ['#C0392B','#D35400','#27AE60','#ccc'];
-                return pct > 0 ? `<div style="width:${pct}%;background:${cols[i]}" title="${b}: ${bc[b]}"></div>` : '';
+            <div style="display:flex;height:10px;border-radius:5px;overflow:hidden;margin-bottom:8px">
+              ${[...bc].map((n,i)=>{
+                const pct=(n/total*100).toFixed(1);
+                return pct>0?`<div style="width:${pct}%;background:${bandColors[i]}" title="${i<5?BAND_LABELS[i]:'Not assessed'}: ${n}"></div>`:'';
               }).join('')}
             </div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap">
-              ${['Needs Support','Monitor','Extending','Not Assessed'].map(b =>
-                `<span style="font-size:.72rem"><span class="chip ${b==='Needs Support'?'chip-red':b==='Monitor'?'chip-amber':b==='Extending'?'chip-green':'chip-grey'}">${b}</span> ${bc[b]}</span>`
-              ).join('')}
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              ${BAND_LABELS.map((lbl,i)=>
+                `<span style="font-size:.7rem">${bandChip(i,false)} ${bc[i]}</span>`).join('')}
+              ${bc[5]>0?`<span style="font-size:.7rem">${bandChip(null,false)} ${bc[5]}</span>`:''}
             </div>` : `<p style="color:var(--muted);font-size:.85rem">No data loaded</p>`}
         </div>`;
       }).join('')}
@@ -1153,214 +873,190 @@ function renderCohortView() {
 
     <div class="card">
       <div class="card-title">Class Comparison</div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr>
-            <th>Class</th><th>Students</th>
-            ${TESTS.map(t => `<th>${t} Mean</th><th>${t} Needs&nbsp;Support</th>`).join('')}
-          </tr></thead>
-          <tbody>
-            ${classSummary.map(r => `<tr>
-              <td><strong>${r.class}</strong></td>
-              <td style="text-align:center">${r.n}</td>
-              ${TESTS.map(t => `
-                <td style="text-align:center;font-family:'DM Mono',monospace">${r[t+'_mean']}</td>
-                <td style="text-align:center">${r[t+'_ns'] > 0 ? `<span class="chip chip-red">${r[t+'_ns']}</span>` : '<span style="color:var(--muted)">0</span>'}</td>
-              `).join('')}
-            </tr>`).join('')}
-          </tbody>
-        </table>
-      </div>
+      <div class="table-wrap"><table>
+        <thead><tr>
+          <th>Class</th><th>n</th><th>High Priority</th>
+          ${tests.map(t=>`<th>${t.name} Mean</th><th>${t.name} Well Below</th>`).join('')}
+        </tr></thead>
+        <tbody>
+          ${classSummary.map(r=>`<tr>
+            <td><strong>${r.class}</strong></td>
+            <td style="text-align:center">${r.n}</td>
+            <td style="text-align:center">${(()=>{
+              const hp = Object.keys(state.students).filter(e=>state.students[e].class===r.class&&getPriority(e,cStats)==='high').length;
+              return hp>0?`<span class="chip chip-r1">${hp}</span>`:'<span style="color:var(--muted)">0</span>';
+            })()}</td>
+            ${tests.map(t=>{
+              const wb = Object.values(state.students).filter(s=>s.class===r.class&&getBand(s.scores[t.name],cStats[t.name])===0).length;
+              return `<td style="text-align:center;font-family:'DM Mono',monospace">${r[t.name+'_mean']}</td>
+                      <td style="text-align:center">${wb>0?`<span class="chip chip-r1">${wb}</span>`:'<span style="color:var(--muted)">0</span>'}</td>`;
+            }).join('')}
+          </tr>`).join('')}
+        </tbody>
+      </table></div>
     </div>`;
-
-  document.getElementById('cohort-view-content').innerHTML = html;
 }
 
-// ════════════════════════════════════════════════════════════════
-// STUDENT PROFILE MODAL
-// ════════════════════════════════════════════════════════════════
+// ── Student profile ──────────────────────────────────────────
 function showProfile(email) {
   const s = state.students[email];
   if (!s) return;
-  const stats = cohortStats();
-  document.getElementById('profile-name').textContent = s.name || email;
+  const tests   = getTests();
+  const cStats  = cohortStats();
+  const clStats = s.class ? classStats(s.class) : cStats;
 
-  const html = `
-    <p style="color:var(--muted);font-size:.82rem;margin-bottom:16px">${email} · ${s.class || 'No class set'}</p>
+  document.getElementById('profile-name').textContent = s.name || email;
+  document.getElementById('profile-content').innerHTML = `
+    <p style="color:var(--muted);font-size:.82rem;margin-bottom:16px">${email} · ${s.class||'No class'}</p>
     <div class="profile-grid">
-      ${TESTS.map(t => {
-        const score = s.scores[t];
-        const abs   = getAbsBand(score, t);
-        const rel   = getRelBand(score, t, stats);
-        const st    = stats[t];
-        const z     = (score != null && st.sd) ? ((score - st.mean) / st.sd) : null;
-        const strat = getStrategy(t, abs);
+      ${tests.map(t => {
+        const score      = s.scores[t.name];
+        const cohortBand = getBand(score, cStats[t.name]);
+        const clsBand    = getBand(score, clStats[t.name]);
+        const st         = cStats[t.name];
+        const z          = (score!=null && st.sd && st.sd>0) ? (score-st.mean)/st.sd : null;
         return `<div class="profile-test-card">
-          <h4>${t}</h4>
+          <h4>${t.name}</h4>
           ${score != null
-            ? `<div class="score-big">${score}</div>
-               <div class="score-sub">out of ${state.settings.tests[t].max}</div>`
+            ? `<div class="score-big">${score}</div><div class="score-sub">out of ${t.max}</div>`
             : `<div class="score-big" style="color:var(--muted)">—</div><div class="score-sub">Not assessed</div>`}
-          <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
-            ${absChip(abs)}
-            ${relChip(rel)}
+          <div style="margin:8px 0">
+            <div style="font-size:.68rem;color:var(--muted);margin-bottom:3px">Cohort</div>
+            ${bandChip(cohortBand, false)}
+            ${s.class ? `<div style="font-size:.68rem;color:var(--muted);margin-top:6px;margin-bottom:3px">In ${s.class}</div>${bandChip(clsBand, true)}` : ''}
           </div>
-          ${z != null ? `<div class="cohort-mini">${sdBar(z)}<span class="lbl">vs cohort (mean ${st.mean.toFixed(1)}, SD ${st.sd.toFixed(2)})</span></div>` : ''}
-          ${strat && abs !== 'Not Assessed' ? `<div class="strategy">${strat}</div>` : ''}
+          ${z!=null&&st.mean!=null ? `<div style="margin-top:8px">${sdBar(z)}<div style="font-size:.66rem;color:var(--muted);margin-top:3px">Cohort mean ${st.mean.toFixed(1)}, SD ${st.sd.toFixed(2)}</div></div>` : ''}
         </div>`;
       }).join('')}
     </div>
-    <div style="margin-top:16px;padding:14px;background:var(--bg);border-radius:8px">
-      <strong>Overall: </strong>${priHtml(getPriority(email))}
+    <div style="margin-top:14px;padding:12px 16px;background:var(--bg);border-radius:8px">
+      <strong>Overall: </strong>${priHtml(getPriority(email, cStats))}
     </div>`;
 
-  document.getElementById('profile-content').innerHTML = html;
   document.getElementById('profile-modal').classList.add('open');
 }
+
 function closeProfileModal() { document.getElementById('profile-modal').classList.remove('open'); }
 
-// ════════════════════════════════════════════════════════════════
-// SETTINGS
-// ════════════════════════════════════════════════════════════════
+// ── Settings ─────────────────────────────────────────────────
 function renderSettings() {
-  // Band settings
-  document.getElementById('band-settings').innerHTML = TESTS.map(t => {
-    const cfg = state.settings.tests[t] || {};
-    return `<div style="margin-bottom:16px">
-      <h4 style="font-size:.85rem;font-weight:600;margin-bottom:8px">${t}</h4>
-      <div class="form-row" style="max-width:500px">
-        <div><label>Max Score</label><input type="number" id="bs-${t}-max" value="${cfg.max||0}" min="0"></div>
-        <div><label>Needs Support ≤</label><input type="number" id="bs-${t}-b1" value="${cfg.band1Max||0}" min="0"></div>
-        <div><label>Monitor ≤</label><input type="number" id="bs-${t}-b2" value="${cfg.band2Max||0}" min="0"></div>
-      </div>
-    </div>`;
-  }).join('');
-
-  // SD thresholds
-  document.getElementById('sd-lo').value  = state.settings.sd.lo;
-  document.getElementById('sd-mid').value = state.settings.sd.mid;
-  document.getElementById('sd-hi').value  = state.settings.sd.hi;
-
-  // Strategies
-  document.getElementById('strategy-settings').innerHTML = TESTS.map(t => {
-    const bands = ['Needs Support','Monitor','Extending'];
-    return `<div style="margin-bottom:16px">
-      <h4 style="font-size:.85rem;font-weight:600;margin-bottom:8px">${t}</h4>
-      ${bands.map(b => `<div style="margin-bottom:8px">
-        <label>${b}</label>
-        <textarea id="strat-${t}-${b.replace(/ /g,'_')}" rows="2" style="font-size:.8rem">${(state.settings.strategies[t]||{})[b]||''}</textarea>
-      </div>`).join('')}
-    </div>`;
-  }).join('');
+  const tests = getTests();
+  document.getElementById('test-config-list').innerHTML = tests.map((t,i) => `
+    <div class="test-config-row" id="test-row-${i}">
+      <input type="text" value="${t.name}" placeholder="Test name" id="tname-${i}" style="flex:2;min-width:0">
+      <input type="number" value="${t.max}" placeholder="Max" id="tmax-${i}" class="max-input" min="1">
+      <label style="margin:0;font-size:.72rem;color:var(--muted);white-space:nowrap">Max score</label>
+      ${tests.length > 1 ? `<button class="btn btn-danger btn-sm" onclick="removeTest(${i})">✕</button>` : ''}
+    </div>`).join('');
+  document.getElementById('sd-inner').value = state.settings.sd.inner;
+  document.getElementById('sd-outer').value = state.settings.sd.outer;
 }
 
-function saveBandSettings() {
-  TESTS.forEach(t => {
-    state.settings.tests[t] = {
-      max:      parseFloat(document.getElementById(`bs-${t}-max`).value) || 0,
-      band1Max: parseFloat(document.getElementById(`bs-${t}-b1`).value)  || 0,
-      band2Max: parseFloat(document.getElementById(`bs-${t}-b2`).value)  || 0,
-    };
+function addTest() {
+  const tests = getTests();
+  tests.push({ name: `Test ${tests.length+1}`, max: 10 });
+  state.settings.tests = tests;
+  saveState(); renderSettings(); renderUploadZones();
+}
+
+function removeTest(idx) {
+  const tests = getTests();
+  if (tests.length <= 1) { toast('You need at least one test'); return; }
+  if (!confirm(`Remove "${tests[idx].name}"? This also removes all scores for this test.`)) return;
+  const name = tests[idx].name;
+  tests.splice(idx, 1);
+  state.settings.tests = tests;
+  Object.values(state.students).forEach(s => delete s.scores[name]);
+  saveState(); renderSettings(); renderUploadZones(); renderDataSummary();
+  toast(`Removed ${name}`);
+}
+
+function saveTestConfig() {
+  const tests = getTests();
+  const newTests = tests.map((t,i) => {
+    const newName = document.getElementById(`tname-${i}`)?.value.trim();
+    const newMax  = parseFloat(document.getElementById(`tmax-${i}`)?.value);
+    if (!newName) return t;
+    if (newName !== t.name) {
+      Object.values(state.students).forEach(s => {
+        if (s.scores[t.name] != null) { s.scores[newName] = s.scores[t.name]; delete s.scores[t.name]; }
+      });
+    }
+    return { name: newName, max: isNaN(newMax) ? t.max : newMax };
   });
-  saveState(); toast('Band settings saved');
+  state.settings.tests = newTests;
+  saveState(); renderSettings(); renderUploadZones(); renderDataSummary();
+  toast('Tests saved');
 }
 
 function saveSDSettings() {
-  state.settings.sd = {
-    lo:  parseFloat(document.getElementById('sd-lo').value)  || 0.5,
-    mid: parseFloat(document.getElementById('sd-mid').value) || 1.0,
-    hi:  parseFloat(document.getElementById('sd-hi').value)  || 1.5,
-  };
-  saveState(); toast('SD thresholds saved');
+  const inner = parseFloat(document.getElementById('sd-inner').value);
+  const outer = parseFloat(document.getElementById('sd-outer').value);
+  if (isNaN(inner) || isNaN(outer) || inner <= 0 || outer <= inner) {
+    toast('Outer threshold must be greater than inner'); return;
+  }
+  state.settings.sd = { inner, outer };
+  saveState(); toast('Thresholds saved');
 }
 
-function saveStrategies() {
-  TESTS.forEach(t => {
-    if (!state.settings.strategies[t]) state.settings.strategies[t] = {};
-    ['Needs Support','Monitor','Extending'].forEach(b => {
-      state.settings.strategies[t][b] = document.getElementById(`strat-${t}-${b.replace(/ /g,'_')}`).value.trim();
-    });
-  });
-  saveState(); toast('Strategies saved');
-}
-
-// ════════════════════════════════════════════════════════════════
-// EXPORT / CLEAR
-// ════════════════════════════════════════════════════════════════
+// ── Export / Clear ────────────────────────────────────────────
 function exportData() {
-  const stats = cohortStats();
-  const rows = [['Email','Name','Class',
-    ...TESTS.flatMap(t => [t+' Score', t+' AbsBand', t+' RelBand']),
+  const tests  = getTests();
+  const cStats = cohortStats();
+  const header = ['Email','Name','Class',
+    ...tests.flatMap(t => [t.name+' Score', t.name+' Cohort Band']),
     'SD Avg','Priority'
-  ]];
-  Object.entries(state.students).forEach(([email, s]) => {
-    const sdAvg = getSDScore(email, stats);
+  ];
+  const rows = [header];
+  Object.entries(state.students).forEach(([email,s]) => {
+    const sdAvg = getSDScore(email, cStats);
     rows.push([
       email, s.name, s.class,
-      ...TESTS.flatMap(t => [
-        s.scores[t] ?? '',
-        getAbsBand(s.scores[t], t),
-        getRelBand(s.scores[t], t, stats),
-      ]),
-      sdAvg != null ? sdAvg.toFixed(3) : '',
-      getPriority(email),
+      ...tests.flatMap(t => {
+        const b = getBand(s.scores[t.name], cStats[t.name]);
+        return [s.scores[t.name]??'', b!==null ? BAND_LABELS[b] : 'Not assessed'];
+      }),
+      sdAvg!=null ? sdAvg.toFixed(3) : '',
+      getPriority(email, cStats),
     ]);
   });
-  const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const csv = rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
   const a = document.createElement('a');
-  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-  a.download = 'pretest_dashboard_export.csv';
-  a.click();
-  toast('Exported CSV');
+  a.href = 'data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download = 'pretest_export.csv'; a.click();
+  toast('Exported');
 }
 
 function clearAllData() {
   if (!confirm('Clear ALL student data? This cannot be undone.')) return;
-  state.students = {};
-  saveState();
-  renderDataSummary();
-  document.getElementById('class-view-content').innerHTML = '<div class="empty"><div class="icon">📊</div><p>Load data first to see the class view.</p></div>';
-  document.getElementById('cohort-view-content').innerHTML = '<div class="empty"><div class="icon">🌐</div><p>Load data first to see cohort statistics.</p></div>';
-  TESTS.forEach(t => {
-    const z = document.getElementById('zone-' + t);
-    const s = document.getElementById('status-' + t);
-    if (z) { z.style.borderColor = ''; z.style.background = ''; }
-    if (s) s.innerHTML = '';
-  });
-  const rz = document.getElementById('zone-roll');
-  const rs = document.getElementById('status-roll');
-  if (rz) { rz.style.borderColor = ''; rz.style.background = ''; }
-  if (rs) rs.innerHTML = '';
+  state.students = {}; saveState();
+  renderUploadZones(); renderDataSummary();
+  document.getElementById('class-view-content').innerHTML  = '<div class="empty"><div class="icon">📊</div><p>Load data first.</p></div>';
+  document.getElementById('cohort-view-content').innerHTML = '<div class="empty"><div class="icon">🌐</div><p>Load data first.</p></div>';
+  const rz=document.getElementById('zone-roll'), rs=document.getElementById('status-roll');
+  if(rz){rz.style.borderColor='';rz.style.background='';}
+  if(rs)rs.innerHTML='';
   toast('All data cleared');
 }
 
-// ════════════════════════════════════════════════════════════════
-// TOAST
-// ════════════════════════════════════════════════════════════════
+// ── Toast ─────────────────────────────────────────────────────
 function toast(msg) {
   const el = document.getElementById('toast');
   el.textContent = msg; el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 2800);
+  setTimeout(()=>el.classList.remove('show'), 2800);
 }
 
-// ════════════════════════════════════════════════════════════════
-// INIT
-// ════════════════════════════════════════════════════════════════
+// ── Init ──────────────────────────────────────────────────────
 updateHeaderSub();
+renderUploadZones();
 updateClassFilter();
 renderDataSummary();
 
-// Restore upload zone status from saved data
-TESTS.forEach(t => {
-  const count = Object.values(state.students).filter(s => s.scores[t] != null).length;
-  if (count > 0) updateZoneStatus(t, count);
-});
-const rollCount = Object.values(state.students).filter(s => s.fromRoll).length;
+const rollCount = Object.values(state.students).filter(s=>s.fromRoll).length;
 if (rollCount > 0) {
-  const zone = document.getElementById('zone-roll');
-  const status = document.getElementById('status-roll');
-  if (zone) { zone.style.borderColor = 'var(--accent)'; zone.style.background = '#EEF3F0'; }
-  if (status) status.innerHTML = `<div style="margin-top:8px;color:var(--accent);font-size:.75rem;font-weight:600">✓ ${rollCount} students on roll</div>`;
+  const rz=document.getElementById('zone-roll'), rs=document.getElementById('status-roll');
+  if(rz){rz.style.borderColor='var(--accent)';rz.style.background='#EEF3F0';}
+  if(rs)rs.innerHTML=`<div style="margin-top:6px;color:var(--accent);font-size:.73rem;font-weight:600">✓ ${rollCount} students on roll</div>`;
 }
 </script>
 </body>
